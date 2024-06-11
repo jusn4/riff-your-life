@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
-  devise_for :admins, controllers: {
+  devise_for :admin,skip: [:registrations, :passwords], controllers: {
+    #skip以降の記述によりパスワード変更、管理者登録のルーティングの削除
     # ↓ローカルに追加されたコントローラーを参照する(コントローラー名: "コントローラーの参照先")
     registrations: "admins/registrations",
     sessions: "admins/sessions",
