@@ -5,10 +5,9 @@ Rails.application.routes.draw do
     get '/mypage' => 'users#mypage'
   end
   
-  namespace :admin do
+  #namespace :admin do
     
-  end
-  
+  #end
   devise_for :admin,skip: [:registrations, :passwords], controllers: {
     #skip以降の記述によりパスワード変更、管理者登録のルーティングの削除
     # ↓ローカルに追加されたコントローラーを参照する(コントローラー名: "コントローラーの参照先")
@@ -17,6 +16,7 @@ Rails.application.routes.draw do
     passwords: "admin/passwords",
     confirmations: "admin/confirmations"
   }
+
   devise_for :users, controllers: {
     # ↓ローカルに追加されたコントローラーを参照する(コントローラー名: "コントローラーの参照先")
     registrations: "public/registrations",
