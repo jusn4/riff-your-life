@@ -1,6 +1,12 @@
 <div class = "container">
   <div class = "row">
-    <p>ログイン後のページ</p>
+    <p>マイページ</p>
+    <p>name</p>
+    <p><%= @user.name %></p>
+    <p>introduction</p>
+    <p><%= @user.introduction %></p>
+    <%= link_to "編集", edit_user_path(@user),class:"btn btn-md btn-success" %>
+    <%= link_to "アカウント削除",user_path(@user), method: :delete, class:"btn btn-md btn-primary" %>
     <%= link_to "ログアウト", destroy_user_session_path,class:"btn btn-md btn-danger",method: :delete %>
   </div>
 </div>

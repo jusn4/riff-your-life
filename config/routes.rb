@@ -7,10 +7,11 @@ Rails.application.routes.draw do
   scope module: :public do
     #urlからpublicを消したいためscope moduleを使用
     get '/mypage' => 'users#mypage'
+    resources :users, only: [:edit, :update,:destroy]
   end
 
   namespace :admin do
-    resources :users, only: [:index, :show]
+    resources :users, only: [:index, :shows]
   end
   devise_for :admin,skip: [:registrations, :passwords], controllers: {
     #skip以降の記述によりパスワード変更、管理者登録のルーティングの削除
@@ -28,8 +29,8 @@ Rails.application.routes.draw do
     passwords: "public/passwords",
     confirmations: "public/confirmations"
   }
-  
+
   devise_scope :user do
-    post "user/guest_sign_in", to: "public/sessions#guest_sign_in"
+    post "users/guest_sign_in", to: "public/sessions#guest_sign_in"
   end
 end
