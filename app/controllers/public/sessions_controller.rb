@@ -9,6 +9,13 @@ class Public::SessionsController < Devise::SessionsController
   def after_sign_out_path_for(resource)
     root_path
   end
+
+  #ゲストログイン機能
+  def guest_sign_in
+    user = User.guest
+    sign_in user
+    redirect_to mypage_path
+  end
   # before_action :configure_sign_in_params, only: [:create]
 
   # GET /resource/sign_in

@@ -28,4 +28,8 @@ Rails.application.routes.draw do
     passwords: "public/passwords",
     confirmations: "public/confirmations"
   }
+  
+  devise_scope :user do
+    post "user/guest_sign_in", to: "public/sessions#guest_sign_in"
+  end
 end
