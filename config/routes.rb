@@ -6,7 +6,7 @@ Rails.application.routes.draw do
     #urlからpublicを消したいためscope moduleを使用
     get '/mypage' => 'users#mypage'
     resources :users, only: [:edit, :update]
-    resources :posts, only: [:new, :show, :index, :edit, :update, :delete]
+    resources :posts
   end
 
   namespace :admin do

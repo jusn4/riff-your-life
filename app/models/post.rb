@@ -1,6 +1,7 @@
 class Post < ApplicationRecord
   
-  mount_uploader :music, AudiofileUploader #音声ファイルの取り込み
+  #mount_uploader :music, AudiofileUploader #音声ファイルの取り込み
+  has_one_attached :music
   has_one_attached :image #画像の取り込み
   
   belongs_to :user
