@@ -1,16 +1,12 @@
 Rails.application.routes.draw do
   
-  namespace :admin do
-    get 'users/show'
-    get 'users/index'
-  end
-  
   root to: 'homes#top'
   
   scope module: :public do
     #urlからpublicを消したいためscope moduleを使用
     get '/mypage' => 'users#mypage'
     resources :users, only: [:edit, :update]
+    resources :posts, only: [:new, :show, :index, :edit, :update, :delete]
   end
 
   namespace :admin do
