@@ -20,6 +20,12 @@ class Public::PostsController < ApplicationController
   def edit
   end
   
+  def destroy
+    post = Post.find(params[:id])
+    post.destroy
+    redirect_to mypage_path
+  end
+  
   private
 
   def post_params
