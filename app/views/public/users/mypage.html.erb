@@ -1,6 +1,6 @@
 <div class = "container my-5">
   <div class = "row">
-    <div class="col-3">
+    <div class="col-4">
       <%= image_tag @user.get_image, size:"100x100" %>
       <table class="table">
         <tbody>
@@ -8,16 +8,12 @@
             <th>Name</th>
             <th><%= @user.name %></th>
           </tr>
-          <tr>
-            <th>Introduction</th>
-            <th><%= @user.introduction %></th>
-          </tr>
+          <tr>Introduction</tr>
+          <tr><%= @user.introduction %></tr>
         </tbody>
       </table>
-      <%= link_to "編集", edit_user_path(@user),class:"btn btn-md btn-success" %>
     </div>
-    
-    <div class = "col-8 offset-1">
+    <div class = "col-8">
       <table class = "table">
         <thead>
           <tr>

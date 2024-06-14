@@ -13,7 +13,7 @@
           <% @posts.each do |post| %>
           <tr>
             <td><%= image_tag post.get_image, size:"50x50" %></td>
-            <td>
+            <td>    
               <%= link_to post_path(post.id) do %>
                 <%= post.title %>
               <% end %>
