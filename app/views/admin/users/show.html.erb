@@ -1,7 +1,7 @@
 <div class = "container my-5">
   <div class = "row">
     <div class="col-3">
-      <%= image_tag @user.get_image, size:"100x100" %>
+      <%= image_tag @user.get_image(100, 100) %>
       <table class="table">
         <tbody>
           <tr>
@@ -19,7 +19,7 @@
         </tbody>
       </table>
     </div>
-    
+
     <div class = "col-8 offset-1">
       <table class = "table">
         <thead>
@@ -34,7 +34,7 @@
           <tr>
             <td>
               <%= link_to admin_post_path(post.id) do %>
-                <%= image_tag post.get_image, size:"50x50" %>
+                <%= image_tag post.get_image(50, 50) %>
                 <%= post.title %>
               <% end %>
             </td>

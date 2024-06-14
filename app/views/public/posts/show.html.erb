@@ -1,10 +1,10 @@
 <div class = "container my-5">
   <div class = "row">
     <div class="col-5">
-      <%= image_tag @post.get_image, size:"400x400" %>
-      
+      <%= image_tag @post.get_image(400, 400) %>
+
     </div>
-    
+
     <div class = "col-7">
       <table class="table">
         <tbody>
@@ -24,7 +24,7 @@
             <th>Creater</th>
             <th>
               <%= link_to user_path(@post.user.id) do %>
-                <%= image_tag @post.user.get_image, size:"50x50" %>
+                <%= image_tag @post.user.get_image(50, 50) %>
                 <%= @post.user.name %>
               <% end %>
             </th>

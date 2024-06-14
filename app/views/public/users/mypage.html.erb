@@ -1,7 +1,7 @@
 <div class = "container my-5">
   <div class = "row">
     <div class="col-3">
-      <%= image_tag @user.get_image, size:"100x100" %>
+      <%= image_tag @user.get_image(100, 100) %>
       <table class="table">
         <tbody>
           <tr>
@@ -14,9 +14,7 @@
           </tr>
         </tbody>
       </table>
-      <%= link_to "編集", edit_user_path(@user),class:"btn btn-md btn-success" %>
     </div>
-    
     <div class = "col-8 offset-1">
       <table class = "table">
         <thead>
@@ -31,7 +29,7 @@
         <tbody>
           <% @posts.each do |post| %>
           <tr>
-            <td><%= image_tag post.get_image, size:"50x50" %></td>
+            <td><%= image_tag post.get_image(50, 50) %></td>
             <td><%= post.title %></td>
             <td><%= audio_tag url_for(post.music), controls: true %>
             </td>
