@@ -1,20 +1,13 @@
 <div class = "container">
   <div class = "row">
-    <p>マイページ</p>
-    <p>name</p>
-    <p><%= @user.name %></p>
-    <p>introduction</p>
-    <p><%= @user.introduction %></p>
-    <%= link_to "編集", edit_user_path(@user),class:"btn btn-md btn-success" %>
-    <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class:"btn btn-md btn-danger" %>
-  </div>
-  <div class = "row">
-    <table class = "table">
+      <table class = "table">
         <thead>
           <tr>
             <th></th>
             <th>Title</th>
             <th></th>
+            <th></th>
+            <th>Creater</th>
             <th></th>
             <th></th>
           </tr>
@@ -26,6 +19,8 @@
             <td><%= post.title %></td>
             <td><%= audio_tag url_for(post.music), controls: true %>
             </td>
+            <td><%= image_tag post.user.get_image, size:"50x50" %></td>
+            <td><%= post.user.name %></td>
             <td><%= link_to "編集", edit_post_path(post),class:"btn btn-md btn-success" %></td>
             <td><%= link_to "削除", post_path(post), method: :delete, class:"btn btn-md btn-danger" %></td>
           </tr>
@@ -34,4 +29,3 @@
       </table>
   </div>
 </div>
-

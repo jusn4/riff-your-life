@@ -5,6 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_one_attached :image
+  has_many :posts, dependent: :destroy
 
   def get_image
     if image.attached?
