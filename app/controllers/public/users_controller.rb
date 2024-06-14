@@ -4,6 +4,11 @@ class Public::UsersController < ApplicationController
     @user = current_user
     @posts = @user.posts
   end
+  
+  def show
+    @user = User.find(params[:id])
+    @posts = @user.posts
+  end
 
   def edit
     @user = current_user
@@ -26,4 +31,5 @@ class Public::UsersController < ApplicationController
   def user_params
     params.require(:user).permit(:name, :introduction, :image)
   end
+  
 end
