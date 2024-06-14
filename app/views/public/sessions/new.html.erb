@@ -1,26 +1,27 @@
-<h2>Log in</h2>
+<div class="container my-5">
+  <%= form_with model:@user, url: user_session_path do |f| %>
+    <div class="row form-group col-3">
+      <label>Email</label>
+        <%= f.email_field :email, autofocus: true, autocomplete: "email",class:"form-control" %>
+    </div>
 
-<%= form_with model:@user, url: user_session_path do |f| %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
+    <div class="row form-group col-3">
+      <label>Password</label>
+        <%= f.password_field :password, autocomplete: "current-password", class:"form-control" %>
+    </div>
 
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
-  </div>
+    <% if devise_mapping.rememberable? %>
+      <div class="form-check">
+        <%= f.check_box :remember_me,class:"form-check-input",type:"checkbox" %>
+        <label class="form-check-label">Remenber me</label>
+      </div>
+    <% end %>
 
-  <% if devise_mapping.rememberable? %>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
+    <div class="row form-group col-3 py-2">
+      <%= f.submit "Sign in", class:"btn btn-sm btn-success" %>
     </div>
   <% end %>
-
-  <div class="actions">
-    <%= f.submit "Log in" %>
+  <div class="form-group">
+    <%= render "public/shared/links" %>
   </div>
-<% end %>
-
-<%= render "public/shared/links" %>
+</div>

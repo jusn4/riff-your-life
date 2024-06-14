@@ -1,8 +1,8 @@
-<div class = "container">
+<div class = "container my-5">
   <div class = "row">
-    <%= link_to "新規登録", new_user_registration_path, class: "btn btn-md btn-success" %>
-    <%= link_to "ログイン", new_user_session_path, class: "btn btn-md btn-primary" %>
-    <%= link_to "ゲストログイン",users_guest_sign_in_path, method: :post,class:"btn btn-md btn-secondary" %>
-    <%= link_to "管理者ログイン", new_admin_session_path, class: "btn btn-md btn-info" %>
+    <div class="mx-auto">
+      <a href="/"><%= image_tag('logo.jpg') %></a>
+      <h4 class="text-center">Riffで語らうSNS</h4>
+    </div>
   </div>
 </div>

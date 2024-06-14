@@ -1,15 +1,24 @@
-<div class = "container">
+<div class = "container my-5">
   <div class = "row">
-    <p>マイページ</p>
-    <p>name</p>
-    <p><%= @user.name %></p>
-    <p>introduction</p>
-    <p><%= @user.introduction %></p>
-    <%= link_to "編集", edit_user_path(@user),class:"btn btn-md btn-success" %>
-    <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class:"btn btn-md btn-danger" %>
-  </div>
-  <div class = "row">
-    <table class = "table">
+    <div class="col-3">
+      <%= image_tag @user.get_image, size:"100x100" %>
+      <table class="table">
+        <tbody>
+          <tr>
+            <th>Name</th>
+            <th><%= @user.name %></th>
+          </tr>
+          <tr>
+            <th>Introduction</th>
+            <th><%= @user.introduction %></th>
+          </tr>
+        </tbody>
+      </table>
+      <%= link_to "編集", edit_user_path(@user),class:"btn btn-md btn-success" %>
+    </div>
+    
+    <div class = "col-8 offset-1">
+      <table class = "table">
         <thead>
           <tr>
             <th></th>
@@ -32,6 +41,7 @@
           <% end %>
         </tbody>
       </table>
+    </div>
   </div>
 </div>
 

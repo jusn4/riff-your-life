@@ -1,11 +1,10 @@
-<div class = "container">
+<div class = "container my-5">
   <div class = "row">
       <table class = "table">
         <thead>
           <tr>
             <th></th>
             <th>Title</th>
-            <th></th>
             <th></th>
             <th>Creater</th>
           </tr>
@@ -14,11 +13,19 @@
           <% @posts.each do |post| %>
           <tr>
             <td><%= image_tag post.get_image, size:"50x50" %></td>
-            <td><%= post.title %></td>
+            <td>
+              <%= link_to post_path(post.id) do %>
+                <%= post.title %>
+              <% end %>
+            </td>
             <td><%= audio_tag url_for(post.music), controls: true %>
             </td>
-            <td><%= image_tag post.user.get_image, size:"50x50" %></td>
-            <td><%= post.user.name %></td>
+            <td>
+              <%= link_to user_path(post.user.id) do %>
+                <%= image_tag post.user.get_image, size:"50x50" %>
+                <%= post.user.name %>
+              <% end %>
+            </td>
           </tr>
           <% end %>
         </tbody>

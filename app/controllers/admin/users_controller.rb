@@ -1,11 +1,13 @@
 class Admin::UsersController < ApplicationController
   def show
+    @user = User.find(params[:id])
+    @posts = @user.posts
   end
 
   def index
     @users = User.all
   end
-  
+
   def edit
     @user = User.find(params[:id])
   end
@@ -21,9 +23,9 @@ class Admin::UsersController < ApplicationController
     @user.destroy
     redirect_to admin_users_path
   end
-  
+
   private
-  
+
   def user_params
     params.require(:user).permit(:name, :introduction, :image)
   end
