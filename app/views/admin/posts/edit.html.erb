@@ -1,5 +1,6 @@
 <div class="container my-5">
   <h2>投稿編集</h2>
+  <%= render "layouts/errors", obj: @post %>
   <%= form_with model: @post do |f| %>
     <div class="form-group col-4">
       <label>Title</label>

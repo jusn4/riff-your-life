@@ -14,8 +14,13 @@ class Admin::UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
-    @user.update(user_params)
-    redirect_to admin_users_path
+    if @user.update(user_params)
+      flash[:notice] = "Successfully updated!"
+      redirect_to admin_users_path
+    else
+      flash.now[:alert] = "Failed to update."
+      render :edit
+    end
   end
 
   def destroy

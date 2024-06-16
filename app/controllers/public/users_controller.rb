@@ -4,7 +4,7 @@ class Public::UsersController < ApplicationController
     @user = current_user
     @posts = @user.posts
   end
-  
+
   def show
     @user = User.find(params[:id])
     @posts = @user.posts
@@ -16,8 +16,13 @@ class Public::UsersController < ApplicationController
 
   def update
     @user = current_user
-    @user.update(user_params)
-    redirect_to mypage_path
+    if @user.update(user_params)
+      flash[:notice] = "Successfully updated!"
+      redirect_to mypage_path
+    else
+      flash.now[:alert] = "Failed to update."
+      render :edit
+    end
   end
 
   def destroy
@@ -31,5 +36,5 @@ class Public::UsersController < ApplicationController
   def user_params
     params.require(:user).permit(:name, :introduction, :image)
   end
-  
+
 end
