@@ -1,0 +1,36 @@
+<div class="container my-5">
+    <%= form_with model:@user, url: user_registration_path do |f| %>
+      <%= render "public/shared/error_messages", resource: resource %>
+
+      <div class="row form-group col-3">
+        <label>name</label>
+        <%= f.text_field :name, class:"form-control" %>
+      </div>
+
+      <div class="row form-group col-3">
+        <label>Email</label>
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", class:"form-control" %>
+      </div>
+
+      <div class="row form-group col-3">
+        <label>Password
+          <% if @minimum_password_length %>
+          <em>(<%= @minimum_password_length %> characters minimum)</em>
+          <% end %>
+        </label>
+        <%= f.password_field :password, autocomplete: "new-password", class:"form-control" %>
+      </div>
+
+      <div class="row form-group col-3">
+        <label>Password Confirmation</label>
+        <%= f.password_field :password_confirmation, autocomplete: "new-password", class:"form-control" %>
+      </div>
+
+      <div class="row form-group col-3">
+        <%= f.submit "Sign up", class:"btn btn-sm btn-primary" %>
+      </div>
+      <% end %>
+      <div class="form-group">
+        <%= render "public/shared/links" %>
+      </div>
+</div>
