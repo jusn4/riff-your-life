@@ -14,6 +14,8 @@
   <body>
     <%= render 'layouts/header' %>
     <main class="mb-auto">
+      <p class='text-success'><%= flash[:notice] %></p>
+    <p class='text-danger'><%= flash[:alert] %></p>
       <%= yield %>
     </main>
    
