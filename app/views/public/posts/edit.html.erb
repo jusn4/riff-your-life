@@ -17,5 +17,6 @@
     <div class="col-4">
       <button type="submit" class="btn btn-sm btn-success">変更を保存</button>
     </div>
+    <%= link_to "削除", post_path(@post), method: :delete, class:"btn btn-md btn-danger col-1" %>
   <% end %>
 </div>

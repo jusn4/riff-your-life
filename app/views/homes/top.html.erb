@@ -1,8 +1,4 @@
 <div class = "container my-5">
-  <div class = "row">
-    <div class="mx-auto">
-      <a href="/"><%= image_tag('logo.jpg') %></a>
-      <h4 class="text-center">Riffで語らうSNS</h4>
-    </div>
-  </div>
+  <%= link_to "Sign up", new_user_registration_path,class:"btn btn-md btn-success" %>
+  <%= link_to "Sign in", new_user_session_path, method: :delete, class:"btn btn-md btn-primary" %>
 </div>
