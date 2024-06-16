@@ -1,11 +1,11 @@
 User.create!(
-  email: 'test@test.com',
+  email: 'test@test',
   name: 'タカマサ',
   password: 'example'
   )
-  
+
 #Admin.find_or_create_by!(email: "admin@admin.com",password: 'example')
-Admin.find_or_create_by!(email: 'admin@admin.com') do |admin|
+Admin.find_or_create_by!(email: 'admin@admin') do |admin|
   admin.password = 'example'
 end
 
