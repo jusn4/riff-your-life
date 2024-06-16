@@ -1,8 +1,5 @@
 Rails.application.routes.draw do
 
-  root to: 'homes#top'
-  get '/about' => 'homes#about'
-
   devise_for :admin,skip: [:registrations, :passwords], controllers: {
     #skip以降の記述によりパスワード変更、管理者登録のルーティングの削除
     # ↓ローカルに追加されたコントローラーを参照する(コントローラー名: "コントローラーの参照先")
@@ -23,6 +20,9 @@ Rails.application.routes.draw do
   devise_scope :user do
     post "users/guest_sign_in", to: "public/sessions#guest_sign_in"
   end
+
+  root to: 'homes#top'
+  get '/about' => 'homes#about'
 
   scope module: :public do
     #urlからpublicを消したいためscope moduleを使用
