@@ -2,7 +2,7 @@ class Post < ApplicationRecord
   belongs_to :user
 
   has_one_attached :music
-  has_one_attached :image #画像の取り込み
+  has_one_attached :image
 
   validates :title, presence: true
   validates :music, presence: true, blob: { content_type: ['audio/mpeg', 'audio/x-wav', 'audio/flac'] }
