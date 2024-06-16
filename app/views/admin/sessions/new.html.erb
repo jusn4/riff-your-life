@@ -1,5 +1,6 @@
 <div class="container my-5">
   <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+  <%= render "admin/shared/error_messages", resource: resource %>
     <div class="row form-group col-3">
       <label>Email</label>
       <%= f.email_field :email, autofocus: true, autocomplete: "email", class:"form-control" %>
