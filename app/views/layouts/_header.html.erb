@@ -16,6 +16,9 @@
         <% end %>
         <ul class="navbar-nav ml-auto">
           <% if user_signed_in? %>
+             <li class="nav-item">
+              <%= link_to "About", about_path, class:'nav-link text-dark' %>
+            </li>
             <li class="nav-item">
               <%= link_to "My page", mypage_path, class:'nav-link text-dark' %>
             </li>
@@ -26,6 +29,9 @@
               <%= link_to "Sign Out", destroy_user_session_path, method: :delete, class:'nav-link text-dark' %>
             </li>
           <% elsif admin_signed_in? %>
+            <li class="nav-item">
+              <%= link_to "About", about_path, class:'nav-link text-dark' %>
+            </li>
             <li>
               <%= link_to "Users", admin_users_path, class:'nav-link text-dark' %>
             </li>
@@ -36,6 +42,9 @@
               <%= link_to "Sign Out", destroy_admin_session_path, method: :delete, class:'nav-link text-dark' %>
             </li>
           <% else %>
+            <li class="nav-item">
+              <%= link_to "About", about_path, class:'nav-link text-dark' %>
+            </li>
             <li class="nav-item">
               <%= link_to "Sign in", new_user_session_path, class:'nav-link text-dark' %>
             </li>
