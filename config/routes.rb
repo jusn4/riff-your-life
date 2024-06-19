@@ -28,6 +28,9 @@ Rails.application.routes.draw do
     get '/mypage' => 'users#mypage'
     resources :users, only: [:index, :show, :edit, :update, :destroy] do
       get :search, on: :collection
+      resource :relationships, only: [:create, :destroy]
+  	    get "followings" => "relationships#followings", as: "followings"
+  	    get "followers" => "relationships#followers", as: "followers"
     end
     resources :posts
   end
