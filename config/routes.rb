@@ -23,13 +23,12 @@ Rails.application.routes.draw do
     post "users/guest_sign_in", to: "public/sessions#guest_sign_in"
   end
 
-  root to: 'public/homes#top'
-  get '/about' => 'public/homes#about'
-
   scope module: :public do
     #urlからpublicを消したいためscope moduleを使用
     get '/mypage' => 'users#mypage'
-    resources :users, only: [:show, :edit, :update, :destroy]
+    resources :users, only: [:index, :show, :edit, :update, :destroy] do
+      get :search, on: :collection
+    end
     resources :posts
   end
 

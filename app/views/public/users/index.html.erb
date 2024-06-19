@@ -2,14 +2,14 @@
   <div class="row">
     <div class="d-flex form-group">
       <form class ="form-inline">
-        <%= form_with url: admin_users_path, local: true, method: :get do |f| %>
+        <%= form_with url: users_path, local: true, method: :get do |f| %>
           <%= f.text_field :word, placeholder:"Search by name", class: "form-control" %>
           <%= f.submit "検索", class: "btn btn-primary" %>
         <% end %>
       </form>
       <% if params[:word].present? %>
         <div class="d-flex col-2">
-          <%= link_to "Clear", admin_users_path, class: "btn btn-success" %>
+          <%= link_to "Clear", users_path, class: "btn btn-success" %>
         </div>
       <% end %>
     </div>
@@ -19,7 +19,7 @@
       <thead>
         <tr>
           <th>Name</th>
-          <th>Email</th>
+          <th>introduction</th>
           <th></th>
         </tr>
       </thead>
@@ -27,16 +27,17 @@
         <% @users.each do |user| %>
         <tr>
           <td>
-            <%= link_to admin_user_path(user.id) do %>
+            <%= link_to user_path(user.id) do %>
               <%= image_tag user.get_image(50, 50) %>
               <%= user.name %>
             <% end %>
           </td>
-          <td><%= user.email %></td>
           <td>
-            <%= link_to "Edit", edit_admin_user_path(user), class: "btn btn-sm btn-success" %>
-            <%= link_to "Delete", admin_user_path(user), method: :delete, class: "btn btn-sm btn-danger" %>
+            <%= user.introduction %>
           </td>
+          <th>
+            <%= user.posts.count %>posts
+          </th>
         </tr>
         <% end %>
       </tbody>

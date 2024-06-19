@@ -5,6 +5,14 @@ class Public::UsersController < ApplicationController
     @user = current_user
     @posts = @user.posts
   end
+  
+  def index
+    if params[:word].present?
+      @users = User.where('name LIKE ?', "%#{params[:word]}%")
+    else
+      @users = User.all
+    end
+  end
 
   def show
     @user = User.find(params[:id])
