@@ -22,11 +22,11 @@ Rails.application.routes.draw do
   devise_scope :user do
     post "users/guest_sign_in", to: "public/sessions#guest_sign_in"
   end
-  
+
   scope module: :public do
     #urlからpublicを消したいためscope moduleを使用
     get '/mypage' => 'users#mypage'
-    resources :users, only: [:show, :edit, :update, :destroy] do
+    resources :users, only: [:index, :show, :edit, :update, :destroy] do
       get :search, on: :collection
     end
     resources :posts
