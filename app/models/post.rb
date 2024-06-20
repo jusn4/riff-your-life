@@ -1,6 +1,9 @@
 class Post < ApplicationRecord
   belongs_to :user
 
+  #コメントの関連付け
+  has_many :comments, dependent: :destroy
+
   has_one_attached :music
   has_one_attached :image
 
