@@ -38,18 +38,25 @@
           </tr>
         </tbody>
       </table>
-      <div class="form-group">
+      <div class="form-group-row">
         <%= form_with model: [@post, @comment] do |f| %>
-          <%= f.text_area :body, placeholder: "コメントをここに", class:"form-control" %>
-          <%= f.submit "Send", class:"form-control-button btn-primary" %>
+          <%= f.text_area :body, placeholder: "コメントをここに", class:"form-control col-10" %>
+          <%= f.submit "S", class:"btn btn-sm btn-primary col-2" %>
         <% end %>
       </div>
-      <div>
-        <p><%= @post.comments.count %>comments</p>
+      <div class="border-bottom">
+        <%= @post.comments.count %>comments
+      </div>
+      <div class="row">
         <% @post.comments.each do |comment| %>
+        <div class="col-1">
           <%= image_tag comment.user.get_image(50,50) %>
-          <%= comment.user.name %>
-          <%= comment.created_at.strftime('%Y/%m/%d') %><%= comment.body %>
+        </div>
+        <div class="col-11">
+          <strong><%= comment.user.name %></strong>
+          at <%= comment.created_at.strftime('%Y/%m/%d') %><br>
+          <%= comment.body %>
+        </div>
         <% end %>
       </div>
     </div>
