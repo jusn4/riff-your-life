@@ -46,7 +46,11 @@
           <% @posts.each do |post| %>
           <tr>
             <td><%= image_tag post.get_image(50, 50) %></td>
-            <td><%= post.title %></td>
+            <td>
+              <%= link_to post_path(post) do %>
+                <%= post.title %>
+              <% end %>
+            </td>
             <td><%= audio_tag url_for(post.music), controls: true %>
             </td>
             <td><%= link_to "編集", edit_post_path(post),class:"btn btn-md btn-success" %></td>
