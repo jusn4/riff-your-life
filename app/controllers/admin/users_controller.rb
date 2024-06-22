@@ -6,7 +6,11 @@ class Admin::UsersController < ApplicationController
   end
 
   def index
-    @users = User.all
+    if params[:word].present?
+      @users = User.where('name LIKE ?', "%#{params[:word]}%")
+    else
+      @users = User.all
+    end
   end
 
   def edit

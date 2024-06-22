@@ -1,4 +1,19 @@
 <div class = "container my-5">
+  <div class="row">
+    <div class="d-flex form-group">
+      <form class ="form-inline">
+        <%= form_with url: admin_posts_path, local: true, method: :get do |f| %>
+          <%= f.text_field :word, placeholder:"Search by title", class: "form-control" %>
+          <%= f.submit "検索", class: "btn btn-primary" %>
+        <% end %>
+      </form>
+      <% if params[:word].present? %>
+        <div class="d-flex col-2">
+          <%= link_to "Clear", admin_posts_path, class: "btn btn-success" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
   <div class = "row">
       <table class = "table">
         <thead>
@@ -13,21 +28,27 @@
         <tbody>
           <% @posts.each do |post| %>
           <tr>
-            <td><%= link_to admin_post_path(post.id) do %>
+            <td class="align-middle"><%= link_to admin_post_path(post.id) do %>
                   <%= image_tag post.get_image(50, 50) %>
                   <%= post.title %>
                 <% end %>
             </td>
-            <td><%= audio_tag url_for(post.music), controls: true %>
+            <td class="align-middle"><%= audio_tag url_for(post.music), controls: true %>
             </td>
-            <td>
+            <td class="align-middle">
               <%= link_to admin_user_path(post.user.id) do %>
                 <%= image_tag post.user.get_image(50, 50) %>
                 <%= post.user.name %>
               <% end %>
             </td>
-            <td><%= link_to "Edit", edit_admin_post_path(post),class:"btn btn-md btn-success" %></td>
-            <td><%= link_to "Delete", admin_post_path(post), method: :delete, class:"btn btn-md btn-danger" %></td>
+            <td class="align-middle">
+              <i class="fa-regular fa-comment"></i>
+              <%= post.comments.count %>
+            </td>
+            <td class="align-middle">
+              <%= link_to "Edit", edit_admin_post_path(post),class:"btn btn-sm btn-success" %>
+              <%= link_to "Delete", admin_post_path(post), method: :delete, class:"btn btn-sm btn-danger" %>
+            </td>
           </tr>
           <% end %>
         </tbody>

@@ -18,10 +18,16 @@ class Public::PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
+    @user = @post.user
+    @comment = Comment.new
   end
 
   def index
-    @posts = Post.all
+    if params[:word].present?
+      @posts = Post.where('title LIKE ?', "%#{params[:word]}%")
+    else
+      @posts = Post.all
+    end
   end
 
   def edit
