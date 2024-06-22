@@ -32,15 +32,17 @@ Rails.application.routes.draw do
   	    get "followings" => "relationships#followings", as: "followings"
   	    get "followers" => "relationships#followers", as: "followers"
     end
-    
+
     resources :posts do
-      resources :comments, only: [:create]
+      resources :comments, only: [:create,:destroy]
     end
-    
+
   end
 
   namespace :admin do
     resources :users, only: [:index, :show, :edit, :update, :destroy]
-    resources :posts, only: [:index, :show, :edit, :update, :destroy]
+    resources :posts, only: [:index, :show, :edit, :update, :destroy] do
+      resources :comments, only: [:destroy]
+    end
   end
 end

@@ -21,21 +21,26 @@
             <th></th>
             <th>Title</th>
             <th></th>
+            <th></th>
             <th>Creater</th>
           </tr>
         </thead>
         <tbody>
           <% @posts.each do |post| %>
           <tr>
-            <td><%= image_tag post.get_image(50, 50) %></td>
-            <td>
+            <td class="align-middle"><%= image_tag post.get_image(50, 50) %></td>
+            <td class="align-middle">
               <%= link_to post_path(post.id) do %>
                 <%= post.title %>
               <% end %>
             </td>
-            <td><%= audio_tag url_for(post.music), controls: true %>
+            <td class="align-middle"><%= audio_tag url_for(post.music), controls: true %>
             </td>
-            <td>
+            <td class="align-middle">
+              <i class="fa-regular fa-comment"></i>
+              <%= post.comments.count %>
+            </td>
+            <td class="align-middle">
               <%= link_to user_path(post.user.id) do %>
                 <%= image_tag post.get_image(50, 50) %>
                 <%= post.user.name %>
