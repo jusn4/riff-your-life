@@ -24,7 +24,7 @@
             <th>Creater</th>
             <th>
               <%= link_to user_path(@user.id) do %>
-                <%= image_tag @user.get_image(50, 50) %>
+                <%= image_tag @user.get_image(30, 30) %>
                 <%= @user.name %>
               <% end %>
               <% if current_user != @user %>
@@ -38,6 +38,35 @@
           </tr>
         </tbody>
       </table>
+      <%= form_with model: [@post, @comment] do |f| %>
+        <div class="row align-items-center">
+          <%= f.text_field :body, placeholder: "Write a comment", class:"form-control col-11 rounded-pill" %>
+          <button type="submit" class="btn btn-md btn-outline-secondary col-1 rounded-pill">
+            <i class="fa-regular fa-paper-plane"></i>
+          </button>
+        </div>
+      <% end %>
+      <div class="border-bottom">
+        <i class="fa-regular fa-comment"></i>
+        <%= @post.comments.count %> comment
+      </div>
+      <div class="row">
+        <% @post.comments.each do |comment| %>
+        <div class="col-1">
+          <%= image_tag comment.user.get_image(50,50) %>
+        </div>
+        <div class="col-11">
+          <strong><%= comment.user.name %></strong>
+          at <%= comment.created_at.strftime('%Y/%m/%d') %><br>
+          <%= comment.body %>
+          <% if current_user = comment.user %>
+            <p class="text-right">
+               <%= link_to "delete", post_comment_path(comment.post, comment), method: :delete %>
+            </p>
+          <% end %>
+        </div>
+        <% end %>
+      </div>
     </div>
   </div>
 </div>
