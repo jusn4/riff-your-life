@@ -21,7 +21,7 @@ class Admin::UsersController < ApplicationController
     @user = User.find(params[:id])
     if @user.update(user_params)
       flash[:notice] = "Successfully updated!"
-      redirect_to admin_users_path
+      redirect_to admin_user_path(@user)
     else
       flash.now[:alert] = "Failed to update."
       render :edit
