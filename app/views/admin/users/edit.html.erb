@@ -1,5 +1,7 @@
 <div class = "container my-5">
-  <h2>プロフィール編集</h2>
+  <div class="h4 pb-2 mb-4 border-bottom border-secondary">
+    Edit your Post
+  </div>
   <%= render "layouts/errors", obj: @user %>
   <%= form_with model: [:admin, @user] do |f| %>
     <div class="form-group col-4">
