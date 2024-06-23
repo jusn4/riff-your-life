@@ -1,22 +1,24 @@
 <div class="container my-5">
-  <h2>投稿編集</h2>
+  <div class="h4 pb-2 mb-4 border-bottom border-secondary">
+    Edit your Post
+  </div>
   <%= render "layouts/errors", obj: @post %>
   <%= form_with model: @post do |f| %>
     <div class="form-group col-4">
       <label>Title</label>
-      <%= f.text_field :title, autofocus: true, placeholder:"名前", class:"form-control" %>
+      <%= f.text_field :title, autofocus: true, placeholder:"Name your riff", class:"form-control" %>
     </div>
     <div class="form-group col-4">
       <label>Body</label>
-    <%= f.text_field :body, placeholder:"詳細", class:"form-control" %>
+    <%= f.text_area :body, placeholder:"Describe your riff", class:"form-control" %>
     </div>
     <div class="form-group col-4">
       <label>Image</label>
-      <%= f.file_field :image, placeholder: "画像", accept: "image/*", class:"form-control-file" %>
+      <%= f.file_field :image,  accept: "image/*", class:"form-control-file" %>
     </div>
-    <div class="col-4">
-      <button type="submit" class="btn btn-sm btn-success">変更を保存</button>
+    <div class="col-10">
+      <button type="submit" class="btn btn-sm btn-success">Save changes</button>
+      <%= link_to "Delete", post_path(@post), method: :delete, class:"btn btn-sm btn-danger col-1" %>
     </div>
-    <%= link_to "削除", post_path(@post), method: :delete, class:"btn btn-md btn-danger col-1" %>
   <% end %>
 </div>
