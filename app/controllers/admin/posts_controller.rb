@@ -1,5 +1,6 @@
 class Admin::PostsController < ApplicationController
   before_action :authenticate_admin!
+  
   def show
     @post = Post.find(params[:id])
   end
@@ -20,7 +21,7 @@ class Admin::PostsController < ApplicationController
     @post = Post.find(params[:id])
     if @post.update(post_params)
       flash[:notice] = "Successfully updated!"
-      redirect_to admin_posts_path
+      redirect_to admin_post_path(@post)
     else
       flash.now[:alert] = "Failed to update."
       render :edit
