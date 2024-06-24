@@ -24,10 +24,12 @@
               <% end %>
             </th>
           </tr>
-          <tr>
-            <th><%= link_to "編集", edit_user_path(@user), class:"btn btn-md btn-success" %></th>
-            <th><%= link_to "退会", user_path(@user), method: :delete, class:"btn btn-md btn-danger" %></th>
-          </tr>
+          <% if @user.email != "guest@example.com" %>
+            <tr>
+              <th><%= link_to "編集", edit_user_path(@user), class:"btn btn-md btn-success" %></th>
+              <th><%= link_to "退会", user_path(@user), method: :delete, class:"btn btn-md btn-danger" %></th>
+            </tr>
+          <% end %>
         </tbody>
       </table>
     </div>

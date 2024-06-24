@@ -1,5 +1,8 @@
 class Public::PostsController < ApplicationController
   before_action :authenticate_user!
+  before_action :ensure_guest_user, only: [:new, :create]
+
+  
   def new
     @post = Post.new
   end
@@ -56,4 +59,10 @@ class Public::PostsController < ApplicationController
   def post_params
     params.require(:post).permit(:title, :body, :image, :music)
   end
+  
+  def ensure_guest_user
+    if current_user.email == "guest@example.com"
+      redirect_to mypage_path, alert: 'You need to sign up!'
+    end
+  end 
 end
