@@ -39,6 +39,7 @@
             <td class="align-middle">
               <i class="fa-regular fa-comment"></i>
               <%= post.comments.count %>
+              <%= render 'public/favorites/heart', post: post %>
             </td>
             <td class="align-middle">
               <%= link_to user_path(post.user.id) do %>
