@@ -46,9 +46,14 @@
           </button>
         </div>
       <% end %>
-      <div class="border-bottom">
-        <i class="fa-regular fa-comment"></i>
-        <%= @post.comments.count %> comment
+      <div class="border-bottom py-1 row">
+        <div class="col-2">
+          <i class="fa-regular fa-comment"></i>
+          <%= @post.comments.count %>
+        </div>
+        <div class=<%= "favorite-" + @post.id.to_s %>>
+          <%= render 'public/favorites/heart', post: @post %>
+        </div>
       </div>
       <div class="row">
         <% @post.comments.each do |comment| %>

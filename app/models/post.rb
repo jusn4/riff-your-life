@@ -1,7 +1,6 @@
 class Post < ApplicationRecord
   #ユーザーとの関連付け
   belongs_to :user
-
   #コメントの関連付け
   has_many :comments, dependent: :destroy
   #いいねとの関連付け
