@@ -1,0 +1,1 @@
+$('.favorite-<%= @favorite.post_id %>').html("<%= j(render 'public/favorites/heart',  post: @favorite.post ) %>")

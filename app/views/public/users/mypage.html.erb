@@ -57,6 +57,9 @@
             <td class="align-middle">
               <i class="fa-regular fa-comment"></i>
               <%= post.comments.count %>
+              <div class=<%= "favorite-" + post.id.to_s %>>
+                <%= render 'public/favorites/heart', post: post %>
+              </div>
             </td>
             <td class="align-middle">
               <%= link_to "Edit", edit_post_path(post),class:"btn btn-sm btn-success" %>

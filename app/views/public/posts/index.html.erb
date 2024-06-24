@@ -22,6 +22,7 @@
             <th>Title</th>
             <th></th>
             <th></th>
+            <th></th>
             <th>Creater</th>
           </tr>
         </thead>
@@ -37,8 +38,13 @@
             <td class="align-middle"><%= audio_tag url_for(post.music), controls: true %>
             </td>
             <td class="align-middle">
-              <i class="fa-regular fa-comment"></i>
-              <%= post.comments.count %>
+              <div>
+                <i class="fa-regular fa-comment"></i>
+                <%= post.comments.count %>
+              </div>
+              <div class=<%= "favorite-" + post.id.to_s %>>
+                <%= render 'public/favorites/heart', post: post %>
+              </div>
             </td>
             <td class="align-middle">
               <%= link_to user_path(post.user.id) do %>
