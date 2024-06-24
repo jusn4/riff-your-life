@@ -1,5 +1,6 @@
 class Public::UsersController < ApplicationController
   before_action :authenticate_user!
+  before_action :ensure_guest_user, only: [:edit]
 
   def mypage
     @user = current_user
@@ -45,5 +46,11 @@ class Public::UsersController < ApplicationController
   def user_params
     params.require(:user).permit(:name, :introduction, :image)
   end
+  
+  def ensure_guest_user
+    if current_user.email == "guest@example.com"
+      redirect_to mypage_path, alert: 'You need to sign up!'
+    end
+  end 
 
 end
