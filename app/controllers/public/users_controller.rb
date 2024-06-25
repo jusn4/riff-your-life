@@ -24,7 +24,7 @@ class Public::UsersController < ApplicationController
       #entryテーブル内に同一room_idを調べる
       @current_entry.each do |current|
         @another_entry.each do |another|
-          if current.room_id == another.room_id
+          if current.room_id == another.room_id then
             @is_room = true
             @room_id = current.room_id
           end
