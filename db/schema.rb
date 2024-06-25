@@ -58,6 +58,8 @@ ActiveRecord::Schema.define(version: 2024_06_12_062904) do
     t.text "body", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["post_id"], name: "index_comments_on_post_id"
+    t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
   create_table "entries", force: :cascade do |t|
@@ -72,6 +74,8 @@ ActiveRecord::Schema.define(version: 2024_06_12_062904) do
     t.integer "post_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["post_id"], name: "index_favorites_on_post_id"
+    t.index ["user_id"], name: "index_favorites_on_user_id"
   end
 
   create_table "messages", force: :cascade do |t|
@@ -87,6 +91,8 @@ ActiveRecord::Schema.define(version: 2024_06_12_062904) do
     t.integer "tag_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["post_id"], name: "index_post_tags_on_post_id"
+    t.index ["tag_id"], name: "index_post_tags_on_tag_id"
   end
 
   create_table "posts", force: :cascade do |t|
@@ -95,6 +101,7 @@ ActiveRecord::Schema.define(version: 2024_06_12_062904) do
     t.text "body", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_posts_on_user_id"
   end
 
   create_table "relationships", force: :cascade do |t|
@@ -113,6 +120,7 @@ ActiveRecord::Schema.define(version: 2024_06_12_062904) do
     t.string "name", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["name"], name: "index_tags_on_name", unique: true
   end
 
   create_table "users", force: :cascade do |t|
@@ -131,4 +139,11 @@ ActiveRecord::Schema.define(version: 2024_06_12_062904) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "comments", "posts"
+  add_foreign_key "comments", "users"
+  add_foreign_key "favorites", "posts"
+  add_foreign_key "favorites", "users"
+  add_foreign_key "post_tags", "posts"
+  add_foreign_key "post_tags", "tags"
+  add_foreign_key "posts", "users"
 end

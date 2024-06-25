@@ -5,6 +5,9 @@ class Post < ApplicationRecord
   has_many :comments, dependent: :destroy
   #いいねとの関連付け
   has_many :favorites, dependent: :destroy
+  #タグの関連付け
+  has_many :post_tags, depedent: :destroy
+  has_many :tags, through: :post_tags
 
   has_one_attached :music
   has_one_attached :image

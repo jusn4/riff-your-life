@@ -18,7 +18,7 @@
           </tr>
           <tr>
             <th>Body</th>
-            <th><%= @post.body %></th>
+            <th><%= simple_format(h(@post.body)) %></th>
           </tr>
           <tr>
             <th>Creater</th>

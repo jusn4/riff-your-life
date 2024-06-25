@@ -18,7 +18,7 @@
           </tr>
           <tr>
             <th>Body</th>
-            <th><%= @post.body %></th>
+            <th><%= simple_format(h(@post.body)) %></th>
           </tr>
           <tr>
             <th>Creater</th>
@@ -52,11 +52,9 @@
           <strong><%= comment.user.name %></strong>
           at <%= comment.created_at.strftime('%Y/%m/%d') %><br>
           <%= comment.body %>
-          <% if current_user = comment.user %>
-            <p class="text-right">
-               <%= link_to "delete", admin_post_comment_path(comment.post, comment), method: :delete %>
-            </p>
-          <% end %>
+          <p class="text-right">
+            <%= link_to "delete", admin_post_comment_path(comment.post, comment), method: :delete %>
+          </p>
         </div>
         <% end %>
       </div>
