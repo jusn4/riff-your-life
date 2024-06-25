@@ -17,6 +17,25 @@ class Public::UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    #roomがcreateされたときにcurrent_userと相手の両方をentriesテーブルから取得
+    @current_entry = Entry.where(user_id: current_user.id)
+    @another_entry = Entry.where(user_id: @user.id)
+    unless @user.id == current_user.id
+      #entryテーブル内に同一room_idを調べる
+      @current_entry.each do |current|
+        @another_entry.each do |another|
+          if current.room_id == another.room_id
+            @is_room = true
+            @room_id = current.room_id
+          end
+        end
+      end
+      unless @is_room
+        #同一テーブルがない場合は新しく作成
+        @room = Room.new
+        @entry = Entry.new
+      end
+    end
     @posts = @user.posts
   end
 
