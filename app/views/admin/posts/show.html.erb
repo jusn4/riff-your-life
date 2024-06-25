@@ -44,12 +44,12 @@
           <i class="fa-regular fa-comment"></i>
           <%= @post.comments.count %> comment
         </div>
-        <% @post.tags.each do |tag| %>
-          <div>
-            <i class="fa-solid fa-tag"></i>
-            <%= tag.name %>
-          </div>
-        <% end %>
+        <div>
+          <i class="fa-solid fa-tags"></i>
+          <% @post.tags.each do |tag| %>
+            #<%= tag.name %>
+          <% end %>
+        </div>
       </div>
       <div class="row">
         <% @post.comments.each do |comment| %>

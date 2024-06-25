@@ -34,6 +34,7 @@ Rails.application.routes.draw do
     end
 
     resources :posts do
+      get :tags, on: :collection
       resources :comments, only: [:create,:destroy]
       #resourceにするとidがURLに含まれない
       resource :favorite, only: [:create, :destroy]
@@ -46,5 +47,6 @@ Rails.application.routes.draw do
     resources :posts, only: [:index, :show, :edit, :update, :destroy] do
       resources :comments, only: [:destroy]
     end
+    resources :tags, only: [:index]
   end
 end

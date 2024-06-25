@@ -15,11 +15,14 @@ class Admin::PostsController < ApplicationController
 
   def edit
     @post = Post.find(params[:id])
+    @tag_list = @post.tags.pluck(:name).join(',')
   end
 
   def update
     @post = Post.find(params[:id])
+    tag_list = params[:post][:name].split(',')
     if @post.update(post_params)
+      @post.save_tags(tag_list)
       flash[:notice] = "Successfully updated!"
       redirect_to admin_post_path(@post)
     else
