@@ -8,6 +8,8 @@ class Admin::PostsController < ApplicationController
   def index
     if params[:word].present?
       @posts = Post.where('title LIKE ?', "%#{params[:word]}%")
+    elsif params[:tag_id].present?
+      @posts = Tag.find(params[:tag_id]).posts
     else
       @posts = Post.all
     end

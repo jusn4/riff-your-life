@@ -47,7 +47,9 @@
         <div>
           <i class="fa-solid fa-tags"></i>
           <% @post.tags.each do |tag| %>
-            #<%= tag.name %>
+            <%= link_to admin_posts_path(tag_id: tag.id) do %>
+              #<%= tag.name %>
+            <% end %>
           <% end %>
         </div>
       </div>

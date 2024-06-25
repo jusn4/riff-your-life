@@ -1,0 +1,46 @@
+<div class = "container">
+  <div class="row">
+    <div class="d-flex form-group mx-auto">
+      <form class ="form-inline">
+        <%= form_with url: admin_tags_path, local: true, method: :get do |f| %>
+          <%= f.text_field :word, placeholder:"Search by name", class: "form-control" %>
+          <%= f.submit "検索", class: "btn btn-primary" %>
+        <% end %>
+      </form>
+      <% if params[:word].present? %>
+        <div class="d-flex col-2">
+          <%= link_to "Clear", admin_tags_path, class: "btn btn-success" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+  <div class = "row">
+    <table class = "table col-6 mx-auto">
+      <thead>
+        <tr>
+          <th>tag</th>
+          <th>Posts</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @tags.each do |tag| %>
+        <tr>
+          <td class="align-middle">
+            <%= link_to admin_posts_path(tag_id: tag.id) do %>
+              <i class="fa-solid fa-tag"></i>
+              <%= tag.name %>
+            <% end %>
+          </td>
+          <td class="align-middle">
+            <%= tag.posts.count %>
+          </td>
+          <td class="align-middle">
+            <%= link_to "Delete", admin_tag_path(tag), method: :delete, class: "btn btn-sm btn-danger" %>
+          </td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
