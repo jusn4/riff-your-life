@@ -10,7 +10,7 @@
           </tr>
           <tr>
             <th>Introduction</th>
-            <th><%= @user.introduction %></th>
+            <th><%= simple_format(h(@user.introduction)) %></th>
           </tr>
           <tr>
             <th>

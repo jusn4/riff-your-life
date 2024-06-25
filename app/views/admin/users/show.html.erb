@@ -10,7 +10,7 @@
           </tr>
           <tr>
             <th>Introduction</th>
-            <th><%= @user.introduction %></th>
+            <th><%= simple_format(h(@user.introduction)) %></th>
           </tr>
           <tr>
             <th><%= link_to "Edit", edit_admin_user_path(@user), class: "btn btn-sm btn-success" %></th>

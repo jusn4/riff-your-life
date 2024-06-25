@@ -18,7 +18,7 @@
           </tr>
           <tr>
             <th>Body</th>
-            <th><%= @post.body %></th>
+            <th><%= simple_format(h(@post.body)) %></th>
           </tr>
           <tr>
             <th>Creater</th>
@@ -46,13 +46,23 @@
           </button>
         </div>
       <% end %>
-      <div class="border-bottom py-1 row">
+      <div class="border-bottom py-1 row align-items-center">
         <div class="col-2">
           <i class="fa-regular fa-comment"></i>
           <%= @post.comments.count %>
         </div>
-        <div class=<%= "favorite-" + @post.id.to_s %>>
-          <%= render 'public/favorites/heart', post: @post %>
+        <div class="col-2">
+          <div class=<%= "favorite-" + @post.id.to_s %>>
+            <%= render 'public/favorites/heart', post: @post %>
+          </div>
+        </div>
+        <div>
+          <i class="fa-solid fa-tags"></i>
+          <% @post.tags.each do |tag| %>
+            <%= link_to posts_path(tag_id: tag.id) do %>
+              #<%= tag.name %>
+            <% end %>
+          <% end %>
         </div>
       </div>
       <div class="row">
