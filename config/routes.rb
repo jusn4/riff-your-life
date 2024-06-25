@@ -39,6 +39,9 @@ Rails.application.routes.draw do
       #resourceにするとidがURLに含まれない
       resource :favorite, only: [:create, :destroy]
     end
+    #DM機能のルーティング
+    resources :messages, only: [:create]
+    resources :rooms, only: [:create, :show, :index]
 
   end
 
