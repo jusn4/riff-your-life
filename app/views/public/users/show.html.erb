@@ -32,7 +32,7 @@
                 <% else %>
                   <%= link_to "Follow", user_relationships_path(@user.id), method: :post, class: "btn btn-sm btn-success" %>
                 <% end %>
-                <% if @is_oom == true %>
+                <% if @is_room == true %>
                   <%= link_to room_path(@room_id), class:"btn btn-sm rounded-pill" do %>
                     <i class="fa-solid fa-comment-dots"></i>
                   <% end %>

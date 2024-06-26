@@ -117,10 +117,8 @@ ActiveRecord::Schema.define(version: 2024_06_12_062904) do
   end
 
   create_table "rooms", force: :cascade do |t|
-    t.integer "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["user_id"], name: "index_rooms_on_user_id"
   end
 
   create_table "tags", force: :cascade do |t|
@@ -157,5 +155,4 @@ ActiveRecord::Schema.define(version: 2024_06_12_062904) do
   add_foreign_key "post_tags", "posts"
   add_foreign_key "post_tags", "tags"
   add_foreign_key "posts", "users"
-  add_foreign_key "rooms", "users"
 end
