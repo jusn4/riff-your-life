@@ -24,17 +24,37 @@
               <% end %>
             </th>
           </tr>
-          <% if current_user != @user %>
-            <tr>
-              <th>
-                <% if current_user.following?(user) %>
-                  <%= link_to "Unfollow", user_relationships_path(user.id), method: :delete, class: "btn btn-info" %>
+          <tr>
+            <% if current_user != @user %>
+              <th class="align-middle">
+                <% if current_user.following?(@user) %>
+                  <%= link_to user_relationships_path(@user.id), method: :delete do %> 
+                    <button type="button" class="btn btn-info"><i class="fa-solid fa-user-minus"></i></button>
+                  <% end %>
                 <% else %>
-                  <%= link_to "Follow", user_relationships_path(user.id), method: :post, class: "btn btn-success" %>
+                  <%= link_to user_relationships_path(@user.id), method: :post do %>
+                    <button type="button" class="btn btn-primary"><i class="fa-solid fa-user-plus"></i></button>
+                  <% end %>
                 <% end %>
               </th>
-            </tr>
-          <% end %>
+              <th class="align-middle">
+                <% if @is_room == true %>
+                  <%= link_to room_path(@room_id) do %>
+                    <button type="button" class="btn btn-success"><i class="fa-solid fa-comment-dots"></i></button>
+                  <% end %>
+                <% else %>
+                  <%= form_with model: @room do |f| %>
+                    <%= fields_for @entry do |e| %>
+                      <%= e.hidden_field :user_id, value: @user.id %>
+                    <% end %>
+                    <button type="submit" class="btn btn-success">
+                      <i class="fa-solid fa-comment-medical"></i>
+                    </button>
+                  <% end %>
+                <% end %>
+              </th>
+            <% end %>
+          </tr>
         </tbody>
       </table>
     </div>

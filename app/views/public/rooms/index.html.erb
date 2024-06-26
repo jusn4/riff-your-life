@@ -1,0 +1,26 @@
+<div class="container">
+  <div class="row mx-auto border-bottom col-6">
+    <h3>All talk rooms</h3>
+  </div>
+  <% @another_entries.each do |entry| %>
+    <div class="row col-6 mx-auto py-1">
+      <div class="col-8">
+        <%= link_to room_path(entry.room) do %>
+          <%= image_tag entry.user.get_image(50, 50) %>
+          <strong><%= entry.user.name %></strong>
+        <% end %>
+      </div>
+      <div class="col-4 mx-auto align-middle">
+        <% if current_user.following?(entry.user) %>
+          <%= link_to user_relationships_path(entry.user.id), method: :delete do %>
+            <button type="button" class="btn btn-info"><i class="fa-solid fa-user-minus"></i> Unfollow</button>
+          <% end %>
+        <% else %>
+          <%= link_to user_relationships_path(entry.user.id), method: :post do %>
+            <button type="button" class="btn btn-primary"><i class="fa-solid fa-user-plus"></i> Follow</button>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+</div>
