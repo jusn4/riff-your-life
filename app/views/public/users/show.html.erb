@@ -29,7 +29,7 @@
               <th class="align-middle">
                 <% if current_user.following?(@user) %>
                   <%= link_to user_relationships_path(@user.id), method: :delete do %> 
-                    <button type="button" class="btn btn-secondary"><i class="fa-solid fa-user-minus"></i></button>
+                    <button type="button" class="btn btn-info"><i class="fa-solid fa-user-minus"></i></button>
                   <% end %>
                 <% else %>
                   <%= link_to user_relationships_path(@user.id), method: :post do %>
@@ -47,7 +47,7 @@
                     <%= fields_for @entry do |e| %>
                       <%= e.hidden_field :user_id, value: @user.id %>
                     <% end %>
-                    <button type="submit" class="btn btn-success col-1">
+                    <button type="submit" class="btn btn-success">
                       <i class="fa-solid fa-comment-medical"></i>
                     </button>
                   <% end %>

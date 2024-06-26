@@ -20,4 +20,15 @@ class Public::RoomsController < ApplicationController
       redirect_back(fallback_location: root_path)
     end
   end
+  
+  def index
+    #ログインユーザーの所属ルーム取得
+    current_entries = current_user.entries
+    my_room_id = []
+    current_entries.each do |entry|
+      my_room_id << entry.room.id
+    end
+    #自分のroom_idでuser_idが自分ではないものを取得
+    @another_entries = Entry.where(room_id: my_room_id).where.not(user_id: current_user.id)
+  end
 end
