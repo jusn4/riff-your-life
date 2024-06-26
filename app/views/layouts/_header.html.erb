@@ -25,6 +25,9 @@
             <li>
               <%= link_to "Users", users_path, class:'nav-link text-dark' %>
             </li>
+            <li>
+              <%= link_to "Following", following_path, class:'nav-link text-dark' %>
+            </li>
             <% if current_user.email != "guest@example.com" %>
               <li>
                 <%= link_to "Chats", rooms_path, class:'nav-link text-dark' %>

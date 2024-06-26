@@ -27,12 +27,29 @@ class Public::PostsController < ApplicationController
     @user = @post.user
     @comment = Comment.new
   end
+  
+  def following
+    if params[:word].present?
+      @posts = Post.where('title LIKE ?', "%#{params[:word]}%")
+    elsif params[:tag_id].present?
+      @posts = Tag.find(params[:tag_id]).posts
+    elsif params[:sort]
+      selection = params[:sort]
+      @posts = Post.sort(selection)
+    else
+      @posts = Post.where(user_id: [*current_user.following_ids])
+    end
+  end
+    
 
   def index
     if params[:word].present?
       @posts = Post.where('title LIKE ?', "%#{params[:word]}%")
     elsif params[:tag_id].present?
       @posts = Tag.find(params[:tag_id]).posts
+    elsif params[:sort]
+      selection = params[:sort]
+      @posts = Post.sort(selection)
     else
       @posts = Post.all
     end

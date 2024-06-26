@@ -2,7 +2,7 @@
   <div class="row">
     <div class="d-flex form-group">
       <form class ="form-inline">
-        <%= form_with url: posts_path, local: true, method: :get do |f| %>
+        <%= form_with url: following_path, local: true, method: :get do |f| %>
           <%= f.text_field :word, placeholder:"Search by title", class: "form-control" %>
           <button type="submit" class="btn btn-outline-success"><i class="fa-solid fa-magnifying-glass"></i></button>
         <% end %>
@@ -13,7 +13,7 @@
         </div>
       <% end %>
     </div>
-    <%= form_with url: posts_path, local: true, method: :get do |f| %>
+    <%= form_with url: following_path, local: true, method: :get do |f| %>
       <%= f.select :sort, [["Latest", 'latest'], ["Favorites", 'fav_count']], { selected: 'latest' } %>
       <%= f.submit %>
     <% end %>
