@@ -6,7 +6,7 @@
     <div class="d-flex form-group">
       <form class ="form-inline">
         <%= form_with url: admin_users_path, local: true, method: :get do |f| %>
-          <%= f.text_field :word, placeholder:"Search by name", required: true class: "form-control" %>
+          <%= f.text_field :word, placeholder:"Search by name", required: true, class: "form-control" %>
           <button type="submit" class="btn btn-outline-success"><i class="fa-solid fa-magnifying-glass"></i></button>
         <% end %>
       </form>

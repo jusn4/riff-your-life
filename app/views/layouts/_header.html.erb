@@ -3,8 +3,14 @@
       <div class="container">
         <% if user_signed_in? %>
           <a class="navbar-brand p-3" href="/">
-            <%= link_to following_path do %>
-              <%= image_tag "logo.jpg", size:'80x80'%>
+            <% if current_user.email == "guest@example" %>
+              <%= link_to posts_path do %>
+                <%= image_tag "logo.jpg", size:'80x80'%>
+              <% end %>
+            <% else %>
+              <%= link_to following_path do %>
+                <%= image_tag "logo.jpg", size:'80x80'%>
+              <% end %>
             <% end %>
           </a>
         <% else %>
@@ -16,29 +22,39 @@
         <% end %>
         <ul class="navbar-nav ml-auto">
           <% if user_signed_in? %>
-            <li class="nav-item">
-              <%= link_to "About", about_path, class:'nav-link text-dark' %>
-            </li>
-            <li class="nav-item">
-              <%= link_to "My page", mypage_path, class:'nav-link text-dark' %>
-            </li>
-            <li>
-              <%= link_to "Users", users_path, class:'nav-link text-dark' %>
-            </li>
-            <li>
-              <%= link_to "Posts", posts_path, class:'nav-link text-dark' %>
-            </li>
-            <% if current_user.email != "guest@example.com" %>
+            <% if current_user.email == "guest@example" %>
+              <li class="nav-item">
+                <%= link_to "About", about_path, class:'nav-link text-dark' %>
+              </li>
+              <li class="nav-item">
+                <%= link_to "Posts", posts_path, class:'nav-link text-dark' %>
+              </li>
+              <li class="nav-item">
+                <%= link_to "Sign Out", destroy_user_session_path, method: :delete, class:'nav-link text-dark' %>
+              </li>
+            <% else %>
+              <li class="nav-item">
+                <%= link_to "About", about_path, class:'nav-link text-dark' %>
+              </li>
+              <li class="nav-item">
+                <%= link_to "My page", mypage_path, class:'nav-link text-dark' %>
+              </li>
+              <li>
+                <%= link_to "Users", users_path, class:'nav-link text-dark' %>
+              </li>
+              <li>
+                <%= link_to "Posts", posts_path, class:'nav-link text-dark' %>
+              </li>
               <li>
                 <%= link_to "Chats", rooms_path, class:'nav-link text-dark' %>
               </li>
               <li class="nav-item">
                 <%= link_to "Upload", new_post_path, class:'nav-link text-dark' %>
               </li>
+              <li class="nav-item">
+                <%= link_to "Sign Out", destroy_user_session_path, method: :delete, class:'nav-link text-dark' %>
+              </li>
             <% end %>
-            <li class="nav-item">
-              <%= link_to "Sign Out", destroy_user_session_path, method: :delete, class:'nav-link text-dark' %>
-            </li>
           <% elsif admin_signed_in? %>
             <li class="nav-item">
               <%= link_to "About", about_path, class:'nav-link text-dark' %>
