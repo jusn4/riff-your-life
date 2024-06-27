@@ -26,6 +26,7 @@ Rails.application.routes.draw do
   scope module: :public do
     #urlからpublicを消したいためscope moduleを使用
     get '/mypage' => 'users#mypage'
+    get '/following' => 'posts#following'
     resources :users, only: [:index, :show, :edit, :update, :destroy] do
       get :search, on: :collection
       resource :relationships, only: [:create, :destroy]
@@ -34,15 +35,23 @@ Rails.application.routes.draw do
     end
 
     resources :posts do
+      get :tags, on: :collection
       resources :comments, only: [:create,:destroy]
+      #resourceにするとidがURLに含まれない
+      resource :favorite, only: [:create, :destroy]
     end
+    #DM機能のルーティング
+    resources :messages, only: [:create]
+    resources :rooms, only: [:create, :show, :index]
 
   end
 
   namespace :admin do
     resources :users, only: [:index, :show, :edit, :update, :destroy]
     resources :posts, only: [:index, :show, :edit, :update, :destroy] do
+      get :tags, on: :collection
       resources :comments, only: [:destroy]
     end
+    resources :tags, only: [:index, :destroy]
   end
 end

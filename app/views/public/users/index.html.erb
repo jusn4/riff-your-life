@@ -1,10 +1,13 @@
 <div class = "container">
+  <div class="h4 pb-2 mb-4 border-bottom border-secondary col-2">
+    Users list
+  </div>
   <div class="row">
     <div class="d-flex form-group">
       <form class ="form-inline">
         <%= form_with url: users_path, local: true, method: :get do |f| %>
-          <%= f.text_field :word, placeholder:"Search by name", class: "form-control" %>
-          <%= f.submit "検索", class: "btn btn-primary" %>
+          <%= f.text_field :word, placeholder:"Search by name", required: true, class: "form-control" %>
+          <button type="submit" class="btn btn-outline-success"><i class="fa-solid fa-magnifying-glass"></i></button>
         <% end %>
       </form>
       <% if params[:word].present? %>
@@ -27,24 +30,28 @@
       <tbody>
         <% @users.each do |user| %>
         <tr>
-          <td>
+          <td class="align-middle">
             <%= link_to user_path(user.id) do %>
               <%= image_tag user.get_image(50, 50) %>
               <%= user.name %>
             <% end %>
           </td>
-          <td>
+          <td class="align-middle">
             <%= user.introduction %>
           </td>
-          <td>
+          <td class="align-middle">
             <%= user.posts.count %>posts
           </td>
-          <td>
+          <td class="align-middle">
             <% if current_user != user %>
               <% if current_user.following?(user) %>
-                <%= link_to "Unfollow", user_relationships_path(user.id), method: :delete, class: "btn btn-info" %>
+                <%= link_to user_relationships_path(user.id), method: :delete do %>
+                  <button type="button" class="btn btn-info"><i class="fa-solid fa-user-minus"></i> Unfollow</button>
+                <% end %>
               <% else %>
-                <%= link_to "Follow", user_relationships_path(user.id), method: :post, class: "btn btn-success" %>
+                <%= link_to user_relationships_path(user.id), method: :post do %>
+                  <button type="button" class="btn btn-primary"><i class="fa-solid fa-user-plus"></i> Follow</button>
+                <% end %>
               <% end %>
             <% end %>
           </td>
@@ -52,5 +59,8 @@
         <% end %>
       </tbody>
     </table>
+    <div class="mx-auto">
+      <%= paginate @users %>
+    </div>
   </div>
 </div>

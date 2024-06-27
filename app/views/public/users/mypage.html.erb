@@ -10,7 +10,7 @@
           </tr>
           <tr>
             <th>Introduction</th>
-            <th><%= @user.introduction %></th>
+            <th><%= simple_format(h(@user.introduction)) %></th>
           </tr>
           <tr>
             <th>
@@ -24,14 +24,19 @@
               <% end %>
             </th>
           </tr>
-          <tr>
-            <th><%= link_to "編集", edit_user_path(@user), class:"btn btn-md btn-success" %></th>
-            <th><%= link_to "退会", user_path(@user), method: :delete, class:"btn btn-md btn-danger" %></th>
-          </tr>
+          <% if @user.email != "guest@example.com" %>
+            <tr>
+              <th><%= link_to "編集", edit_user_path(@user), class:"btn btn-md btn-success" %></th>
+              <th><%= link_to "退会", user_path(@user), method: :delete, class:"btn btn-md btn-danger" %></th>
+            </tr>
+          <% end %>
         </tbody>
       </table>
     </div>
     <div class = "col-8 offset-1">
+      <div class="h4 pb-2 mb-4 border-bottom border-secondary col-3">
+        Your riffs
+      </div>
       <table class = "table">
         <thead>
           <tr>
@@ -57,6 +62,9 @@
             <td class="align-middle">
               <i class="fa-regular fa-comment"></i>
               <%= post.comments.count %>
+              <div class=<%= "favorite-" + post.id.to_s %>>
+                <%= render 'public/favorites/heart', post: post %>
+              </div>
             </td>
             <td class="align-middle">
               <%= link_to "Edit", edit_post_path(post),class:"btn btn-sm btn-success" %>
@@ -66,6 +74,9 @@
           <% end %>
         </tbody>
       </table>
+      <div class="mx-auto">
+        <%= paginate @posts %>
+      </div>
     </div>
   </div>
 </div>

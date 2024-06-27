@@ -1,4 +1,54 @@
 <div class = "container my-5">
-  <%= link_to "Sign up", new_user_registration_path, class:"btn btn-md btn-success" %>
-  <%= link_to "Sign in", new_user_session_path, class:"btn btn-md btn-primary" %>
+  <div class="row">
+    <div class="col-10">
+      <div id="carouselIndicators" class="carousel slide" data-ride="carousel">
+        <!-- インジケータの設定 -->
+        <ol class="carousel-indicators">
+          <li data-target="#carouselIndicators" data-slide-to="0" class="active"></li>
+          <li data-target="#carouselIndicators" data-slide-to="1"></li>
+          <li data-target="#carouselIndicators" data-slide-to="2"></li>
+        </ol>
+        <!-- スライドさせる画像の設定 -->
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <div class="filter">
+              <img src="/assets/top.jpg" class="d-block w-100 filter-img">
+            </div>
+            <div class="carousel-caption d-none d-md-block">
+              <h4>Welcome to Riff_your_life!!</h5>
+              <p>ユーザー登録するとリフのアップロードや他ユーザーとのトークが可能になります</p>
+              <%= link_to "Sign up", new_user_registration_path, class:"btn btn-lg btn-success" %>
+            </div>
+          </div><!-- /.carousel-item -->
+          <div class="carousel-item">
+            <div class="filter">
+              <img src="/assets/top2.jpg" class="d-block w-100 filter-img">
+            </div>
+            <div class="carousel-caption d-none d-md-block">
+              <h4>Welcome back!!</h5>
+              <p>今すぐサインインしてフォローユーザーの最新リフを確認しましょう</p>
+              <%= link_to "Sign in", new_user_session_path, class:"btn btn-lg btn-primary" %>
+            </div>
+          </div><!-- /.carousel-item -->
+          <div class="carousel-item">
+            <div class="filter">
+              <img src="/assets/top3.jpg" class="d-block w-100 filter-img">
+            </div>
+            <div class="carousel-caption d-none d-md-block">
+              <h4>Easy access to this site</h5>
+              <p>ゲストログインでは閲覧のみ可能となります</p>
+              <%= link_to "Guest in", users_guest_sign_in_path, method: :post, class:'btn btn-lg btn-info' %>
+            </div>
+          </div><!-- /.carousel-item -->
+        </div><!-- /.carousel-inner -->
+        <!-- スライドコントロールの設定 -->
+        <button type="button" class="carousel-control-prev" data-target="#carouselIndicators" data-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        </button>
+        <button type="button" class="carousel-control-next" data-target="#carouselIndicators" data-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        </button>
+      </div>
+    </div>
+  </div>
 </div>

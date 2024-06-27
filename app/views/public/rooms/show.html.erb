@@ -1,0 +1,27 @@
+<div class="container col-5">
+  <div class="row mx-auto border-bottom">
+      <%= link_to user_path(@another_entry.user) do %>
+        <button type="button" class="btn"><i class="fa-solid fa-backward-fast d-flex"></i></button>
+      <% end %>
+      <h3><%= @another_entry.user.name %>さんとのトークルーム</h3>
+  </div>
+  <div class="row mx-auto">
+    <% @messages.each do |message| %>
+      <div class="col-1 py-1">
+        <%= image_tag message.user.get_image(50, 50) %>
+      </div>
+      <div class="col-11 py-1">
+        <strong><%= message.user.name %></strong>
+        <%= message.created_at.strftime('%Y/%m/%d') %><br>
+        <%= simple_format(h(message.body)) %>
+      </div>
+    <% end %>
+  </div>
+    <%= form_with model: @message do |f| %>
+      <div class="row rounded mx-auto col-10 border border-secondary">
+        <%= f.text_area :body, placeholder: "Add your message.", style: "border: none", class:"form-control col-11" %>
+        <%= f.hidden_field :room_id, value: @room.id %>
+        <button type="submit" class="btn mx-auto"><i class="fa-regular fa-paper-plane"></i></button>
+      </div>
+    <% end %>
+</div>

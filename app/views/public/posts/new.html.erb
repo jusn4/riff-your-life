@@ -1,10 +1,12 @@
 <div class = "container my-5">
-  <h1>新規投稿フォーム</h1>
+  <div class="h4 pb-2 mb-4 border-bottom border-secondary">
+    Upload
+  </div>
   <%= render "layouts/errors", obj: @post %>
   <%= form_with model: @post do |f| %>
     <div class="form-group col-4">
       <label>Title</label>
-      <%= f.text_field :title, class:"form-control" %>
+      <%= f.text_field :title, placeholder:"Name your riff", class:"form-control" %>
     </div>
     <div class="form-group col-4">
       <label>Image</label>
@@ -16,7 +18,12 @@
     </div>
     <div class="form-group col-4">
       <label>Body</label>
-      <%= f.text_area :body, class:"form-control" %>
+      <%= f.text_area :body, placeholder:"Describe your riff", class:"form-control" %>
+    </div>
+    <div class="form-group col-4">
+      <label>Tag</label>
+      <%= f.text_field :name, class: "form-control",
+        placeholder: "Add tags.To add more than one, use ','." %>
     </div>
     <div class="col-4">
       <button type="submit" class="btn btn-sm btn-success">Upload</button>

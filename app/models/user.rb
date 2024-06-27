@@ -15,6 +15,11 @@ class User < ApplicationRecord
   has_many :followers, through: :passive_relationships, source: :follow
   #コメントの関連付け
   has_many :comments, dependent: :destroy
+  #いいねとの関連付け
+  has_many :favorites, dependent: :destroy
+  #DMの関連付け
+  has_many :entries, dependent: :destroy
+  has_many :messages, dependent: :destroy
 
   has_one_attached :image
 

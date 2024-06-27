@@ -12,12 +12,13 @@
   </head>
 
   <body>
+
     <%= render 'layouts/header' %>
-    <main class="mb-auto">
-      <p class='text-success'><%= flash[:notice] %></p>
-    <p class='text-danger'><%= flash[:alert] %></p>
+    <main class="mx-auto">
+      <div class='text-success mx-auto my-2 col-7'><%= flash[:notice] %></div>
+      <div class='text-danger mx-auto my-2 col-7'><%= flash[:alert] %></div>
       <%= yield %>
     </main>
-   
+
   </body>
 </html>

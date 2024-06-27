@@ -1,10 +1,13 @@
 <div class = "container my-5">
+  <div class="h4 pb-2 mb-4 border-bottom border-secondary col-2">
+    All riffs
+  </div>
   <div class="row">
     <div class="d-flex form-group">
       <form class ="form-inline">
         <%= form_with url: admin_posts_path, local: true, method: :get do |f| %>
-          <%= f.text_field :word, placeholder:"Search by title", class: "form-control" %>
-          <%= f.submit "検索", class: "btn btn-primary" %>
+          <%= f.text_field :word, placeholder:"Search by title", required: true, class: "form-control" %>
+          <button type="submit" class="btn btn-outline-success"><i class="fa-solid fa-magnifying-glass"></i></button>
         <% end %>
       </form>
       <% if params[:word].present? %>
@@ -53,5 +56,8 @@
           <% end %>
         </tbody>
       </table>
+    <div class="mx-auto">
+      <%= paginate @poss %>
+    </div>
   </div>
 </div>

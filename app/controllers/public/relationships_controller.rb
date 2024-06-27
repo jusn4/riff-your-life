@@ -1,5 +1,6 @@
 class Public::RelationshipsController < ApplicationController
   before_action :authenticate_user!
+  before_action :ensure_guest_user, only: [:create]
   
   def create
     user = User.find(params[:user_id])
@@ -21,5 +22,13 @@ class Public::RelationshipsController < ApplicationController
   def followers
     user = User.find(params[:user_id])
     @users = user.followers
+  end
+  
+  private
+  
+  def ensure_guest_user
+    if current_user.email == "guest@example.com"
+      redirect_to request.referer, alert: 'You need to sign up!'
+    end
   end
 end

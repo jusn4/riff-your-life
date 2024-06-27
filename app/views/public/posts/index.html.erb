@@ -1,10 +1,13 @@
 <div class = "container my-5">
+  <div class="h4 pb-2 mb-4 border-bottom border-secondary col-2">
+    All riffs
+  </div>
   <div class="row">
     <div class="d-flex form-group">
       <form class ="form-inline">
         <%= form_with url: posts_path, local: true, method: :get do |f| %>
-          <%= f.text_field :word, placeholder:"Search by title", class: "form-control" %>
-          <%= f.submit "検索", class: "btn btn-primary" %>
+          <%= f.text_field :word, placeholder:"Search by title", required: true, class: "form-control" %>
+          <button type="submit" class="btn btn-outline-success"><i class="fa-solid fa-magnifying-glass"></i></button>
         <% end %>
       </form>
       <% if params[:word].present? %>
@@ -13,6 +16,14 @@
         </div>
       <% end %>
     </div>
+    <div class="d-flex form-group ml-1">
+      <form class ="form-inline">
+        <%= form_with url: posts_path, local: true, method: :get do |f| %>
+          <%= f.select :sort, [["Latest", 'latest'], ["Favorites", 'fav_count']], {include_blank: 'Sort form'}, required: true, class: "form-control" %>
+          <button type="submit" class="btn btn btn-outline-primary"><i class="fa-solid fa-filter"></i></button>
+        <% end %>
+      </form>
+    </div>
   </div>
   <div class = "row">
       <table class = "table">
@@ -20,6 +31,7 @@
           <tr>
             <th></th>
             <th>Title</th>
+            <th></th>
             <th></th>
             <th></th>
             <th>Creater</th>
@@ -37,8 +49,13 @@
             <td class="align-middle"><%= audio_tag url_for(post.music), controls: true %>
             </td>
             <td class="align-middle">
-              <i class="fa-regular fa-comment"></i>
-              <%= post.comments.count %>
+              <div>
+                <i class="fa-regular fa-comment"></i>
+                <%= post.comments.count %>
+              </div>
+              <div class=<%= "favorite-" + post.id.to_s %>>
+                <%= render 'public/favorites/heart', post: post %>
+              </div>
             </td>
             <td class="align-middle">
               <%= link_to user_path(post.user.id) do %>
@@ -50,5 +67,8 @@
           <% end %>
         </tbody>
       </table>
+    <div class="mx-auto">
+      <%= paginate(@posts) %>
+    </div>
   </div>
 </div>
