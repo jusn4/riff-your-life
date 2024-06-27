@@ -1,5 +1,6 @@
 class Public::MessagesController < ApplicationController
   before_action :authenticate_user!
+  before_action :ensure_guest_user
 
   def create
     message = current_user.messages.build(message_params)
@@ -14,5 +15,13 @@ class Public::MessagesController < ApplicationController
   
   def message_params
     params.require(:message).permit(:body, :room_id)
+  end
+  
+  private
+  
+  def ensure_guest_user
+    if current_user.email == "guest@example.com"
+      redirect_to request.referer, alert: 'You need to sign up!'
+    end
   end
 end

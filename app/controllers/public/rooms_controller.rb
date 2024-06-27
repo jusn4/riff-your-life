@@ -1,5 +1,6 @@
 class Public::RoomsController < ApplicationController
   before_action :authenticate_user!
+  before_action :ensure_guest_user
   
   def create
     @room = Room.create
@@ -30,5 +31,15 @@ class Public::RoomsController < ApplicationController
     end
     #自分のroom_idでuser_idが自分ではないものを取得
     @another_entries = Entry.where(room_id: my_room_id).where.not(user_id: current_user.id).page(params[:page])
+  end
+  
+  private
+  
+  private
+  
+  def ensure_guest_user
+    if current_user.email == "guest@example.com"
+      redirect_to request.referer, alert: 'You need to sign up!'
+    end
   end
 end

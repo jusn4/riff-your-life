@@ -3,7 +3,7 @@
       <div class="container">
         <% if user_signed_in? %>
           <a class="navbar-brand p-3" href="/">
-            <%= link_to posts_path do %>
+            <%= link_to following_path do %>
               <%= image_tag "logo.jpg", size:'80x80'%>
             <% end %>
           </a>
@@ -26,7 +26,7 @@
               <%= link_to "Users", users_path, class:'nav-link text-dark' %>
             </li>
             <li>
-              <%= link_to "Following", following_path, class:'nav-link text-dark' %>
+              <%= link_to "Posts", posts_path, class:'nav-link text-dark' %>
             </li>
             <% if current_user.email != "guest@example.com" %>
               <li>
