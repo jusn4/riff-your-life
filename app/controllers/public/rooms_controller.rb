@@ -38,7 +38,7 @@ class Public::RoomsController < ApplicationController
   private
   
   def ensure_guest_user
-    if current_user.email == "guest@example.com"
+    if current_user.email == "guest@example"
       redirect_to request.referer, alert: 'You need to sign up!'
     end
   end

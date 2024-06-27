@@ -24,7 +24,7 @@
               <% end %>
             </th>
           </tr>
-          <% if @user.email != "guest@example.com" %>
+          <% if @user.email != "guest@example" %>
             <tr>
               <th>
                 <%= link_to edit_user_path(@user) do %>
@@ -40,6 +40,13 @@
           <% end %>
         </tbody>
       </table>
+      <% if @user.email != "guest@example" %>
+        <div class="mx-auto col-9">
+          <%= link_to my_favorites_path do %>
+            <button type="button" class="btn btn-md btn-outline-danger"><i class="fa-solid fa-heart-circle-check"></i>Your favorites</button>
+          <% end %>
+        </div>
+      <% end %>
     </div>
     <div class = "col-8 offset-1">
       <div class="h4 pb-2 mb-4 border-bottom border-secondary col-3">

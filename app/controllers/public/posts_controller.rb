@@ -1,7 +1,7 @@
 class Public::PostsController < ApplicationController
   before_action :authenticate_user!
-  before_action :ensure_guest_user, only: [:new, :create]
-
+  before_action :ensure_guest_user, only: [:new, :create, :edit, :destroy]
+  before_action :is_matching_login_user, only: [:edit, :update, :destroy]
 
   def new
     @post = Post.new
@@ -62,6 +62,12 @@ class Public::PostsController < ApplicationController
       @posts = Post.page(params[:page])
     end
   end
+  
+  def favorites
+    favorites = Favorite.where(user_id: current_user.id).pluck(:post_id)
+    @posts = Post.find(favorites)
+    @posts = Kaminari.paginate_array(@posts).page(params[:page])
+  end
 
   def edit
     @post = Post.find(params[:id])
@@ -94,8 +100,15 @@ class Public::PostsController < ApplicationController
   end
 
   def ensure_guest_user
-    if current_user.email == "guest@example.com"
+    if current_user.email == "guest@example"
       redirect_to mypage_path, alert: 'You need to sign up!'
+    end
+  end
+  
+  def is_matching_login_user
+    user = User.find(params[:id])
+    unless user.id == current_user.id
+      redirect_to mypage_path
     end
   end
 end
