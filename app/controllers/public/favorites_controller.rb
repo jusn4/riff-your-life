@@ -1,6 +1,6 @@
 class Public::FavoritesController < ApplicationController
   before_action :authenticate_user!
-  before_action :ensure_guest_user, only: [:create]
+  before_action :ensure_guest_user
   
   def create
     post = Post.find(params[:post_id])
@@ -22,5 +22,5 @@ class Public::FavoritesController < ApplicationController
     if current_user.email == "guest@example.com"
       redirect_to request.referer, alert: 'You need to sign up!'
     end
-  end 
+  end
 end

@@ -14,6 +14,9 @@ class Post < ApplicationRecord
 
   validates :title, presence: true
   validates :music, presence: true, blob: { content_type: ['audio/mpeg', 'audio/x-wav', 'audio/flac'] }
+  
+  scope :latest, -> {order(created_at: :desc)}
+   scope :fav_count, -> {order(favorite: :desc)}
 
   def get_image(width,height)
     unless image.attached?
@@ -46,16 +49,14 @@ class Post < ApplicationRecord
       self.tags << tag
     end
   end
+  
 
   def self.sort(selection)
     case selection
     when 'latest'
       return Post.all.order(created_at: :DESC)
     when 'fav_count'
-      return all.find(Favorite.group(:post_id).order(Arel.sql('count(post_id) desc')).pluck(:post_id))
-    when 'following'
-
-      return self.following_posts(current_user)
+      return Post.all.order(favorite: :DESC)
     end
   end
 

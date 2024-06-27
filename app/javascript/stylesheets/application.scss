@@ -1,1 +1,13 @@
 @use '~bootstrap/scss/bootstrap';
+
+//carouselの背景の設定
+.filter {
+  background: #000;
+}
+.filter-img {
+  display: block;
+  opacity: .5; //どれくらい暗くするかを設定する数値。低いほど暗くなるようにしてます
+}
+.w-100 {
+  width: 100%;
+}

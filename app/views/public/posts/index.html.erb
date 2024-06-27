@@ -1,4 +1,7 @@
 <div class = "container my-5">
+  <div class="h4 pb-2 mb-4 border-bottom border-secondary col-2">
+    All riffs
+  </div>
   <div class="row">
     <div class="d-flex form-group">
       <form class ="form-inline">
@@ -13,10 +16,14 @@
         </div>
       <% end %>
     </div>
-    <%= form_with url: posts_path, local: true, method: :get do |f| %>
-      <%= f.select :sort, [["Latest", 'latest'], ["Favorites", 'fav_count']], { selected: 'latest' } %>
-      <%= f.submit %>
-    <% end %>
+    <div class="d-flex form-group ml-1">
+      <form class ="form-inline">
+        <%= form_with url: posts_path, local: true, method: :get do |f| %>
+          <%= f.select :sort, [["Latest", 'latest'], ["Favorites", 'fav_count']], {include_blank: 'Sort form'}, required: true, class: "form-control" %>
+          <button type="submit" class="btn btn btn-outline-primary"><i class="fa-solid fa-filter"></i></button>
+        <% end %>
+      </form>
+    </div>
   </div>
   <div class = "row">
       <table class = "table">
@@ -61,7 +68,7 @@
         </tbody>
       </table>
     <div class="mx-auto">
-      <%= paginate @posts %>
+      <%= paginate(@posts) %>
     </div>
   </div>
 </div>
