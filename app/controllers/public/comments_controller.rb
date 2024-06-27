@@ -29,9 +29,8 @@ class Public::CommentsController < ApplicationController
   end
   
   def is_matching_login_user
-    user = User.find(params[:id])
-    unless user.id == current_user.id
-      redirect_to mypage_path
-    end
+    @comments = current_user.comments
+    @comment = @comments.find_by(id: params[:id])
+    redirect_to mypage_path unless @comment
   end
 end

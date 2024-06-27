@@ -62,7 +62,7 @@ class Public::PostsController < ApplicationController
       @posts = Post.page(params[:page])
     end
   end
-  
+
   def favorites
     favorites = Favorite.where(user_id: current_user.id).pluck(:post_id)
     @posts = Post.find(favorites)
@@ -104,11 +104,10 @@ class Public::PostsController < ApplicationController
       redirect_to mypage_path, alert: 'You need to sign up!'
     end
   end
-  
+
   def is_matching_login_user
-    user = User.find(params[:id])
-    unless user.id == current_user.id
-      redirect_to mypage_path
-    end
+    @posts = current_user.posts
+    @post = @posts.find_by(id: params[:id])
+    redirect_to mypage_path unless @post
   end
 end
