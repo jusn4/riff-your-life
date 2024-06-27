@@ -13,16 +13,18 @@
             <th><%= simple_format(h(@user.introduction)) %></th>
           </tr>
           <tr>
-            <th>
-              <%= link_to user_followings_path(@user) do %>
-                <%= @user.followings.count %> Follows
-              <% end %>
-            </th>
-            <th>
-              <%= link_to user_followers_path(@user) do %>
-                <%= @user.followers.count %> Followed
-              <% end %>
-            </th>
+            <% if @user.email != "guest@example" %>
+              <th>
+                <%= link_to user_followings_path(@user) do %>
+                  <%= @user.followings.count %> Follows
+                <% end %>
+              </th>
+              <th>
+                <%= link_to user_followers_path(@user) do %>
+                  <%= @user.followers.count %> Followed
+                <% end %>
+              </th>
+            <% end %>
           </tr>
           <% if @user.email != "guest@example" %>
             <tr>
