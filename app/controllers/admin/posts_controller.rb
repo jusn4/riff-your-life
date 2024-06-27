@@ -7,11 +7,11 @@ class Admin::PostsController < ApplicationController
 
   def index
     if params[:word].present?
-      @posts = Post.where('title LIKE ?', "%#{params[:word]}%")
+      @posts = Post.where('title LIKE ?', "%#{params[:word]}%").page(params[:page])
     elsif params[:tag_id].present?
-      @posts = Tag.find(params[:tag_id]).posts
+      @posts = Tag.find(params[:tag_id]).page(params[:page])
     else
-      @posts = Post.all
+      @posts = Post.page(params[:page])
     end
   end
 
