@@ -3,13 +3,13 @@ class Admin::TagsController < ApplicationController
   
   def index
     if params[:word].present?
-      @tags = Tag.where('name LIKE ?', "%#{params[:word]}%")
+      @tags = Tag.where('name LIKE ?', "%#{params[:word]}%").page(params[:page])
     else
-      @tags = Tag.all
+      @tags = Tag.page(params[:page])
     end
   end
   
-   def destroy
+  def destroy
     tag = Tag.find(params[:id])
     tag.destroy
     redirect_to tags_path

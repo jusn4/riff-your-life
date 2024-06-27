@@ -29,6 +29,6 @@ class Public::RoomsController < ApplicationController
       my_room_id << entry.room.id
     end
     #自分のroom_idでuser_idが自分ではないものを取得
-    @another_entries = Entry.where(room_id: my_room_id).where.not(user_id: current_user.id)
+    @another_entries = Entry.where(room_id: my_room_id).where.not(user_id: current_user.id).page(params[:page])
   end
 end

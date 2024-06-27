@@ -26,6 +26,7 @@ Rails.application.routes.draw do
   scope module: :public do
     #urlからpublicを消したいためscope moduleを使用
     get '/mypage' => 'users#mypage'
+    get '/following' => 'posts#following'
     resources :users, only: [:index, :show, :edit, :update, :destroy] do
       get :search, on: :collection
       resource :relationships, only: [:create, :destroy]

@@ -4,21 +4,21 @@ class Public::UsersController < ApplicationController
 
   def mypage
     @user = current_user
-    @posts = @user.posts
+    @posts = @user.posts.page(params[:page])
   end
   
   def index
     if params[:word].present?
-      @users = User.where('name LIKE ?', "%#{params[:word]}%")
+      @users = User.where('name LIKE ?', "%#{params[:word]}%").page(params[:page])
     else
-      @users = User.all
+      @users = User.page(params[:page])
     end
   end
 
   def show
     @user = User.find(params[:id])
     #roomがcreateされたときにcurrent_userと相手の両方をentriesテーブルから取得
-    @posts = @user.posts
+    @posts = @user.posts.page(params[:page])
     @current_entry = Entry.where(user_id: current_user.id)
     @another_entry = Entry.where(user_id: @user.id)
     unless @user.id == current_user.id

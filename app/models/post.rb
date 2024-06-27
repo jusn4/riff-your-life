@@ -26,7 +26,7 @@ class Post < ApplicationRecord
   def favorited_by?(user)
     favorites.exists?(user_id: user.id)
   end
-  
+
   def save_tags(tags)
     #タグが存在していれば、タグの名前を配列としてすべて取得
     current_tags = self.tags.pluck(:name) unless self.tags.nil?
@@ -34,16 +34,28 @@ class Post < ApplicationRecord
     old_tags = current_tags - tags
     #送信されてきたタグから現在存在するタグを除いたタグをnewとする
     new_tags = tags - old_tags
-    
+
     #古いタグを消す
     old_tags.each do |old_name|
       self.tags.delete Tag.find_by(name:old_name)
     end
-    
+
     #新しいタグを保存
     new_tags.each do |new_name|
       tag = Tag.find_or_create_by(name:new_name)
       self.tags << tag
+    end
+  end
+
+  def self.sort(selection)
+    case selection
+    when 'latest'
+      return Post.all.order(created_at: :DESC)
+    when 'fav_count'
+      return all.find(Favorite.group(:post_id).order(Arel.sql('count(post_id) desc')).pluck(:post_id))
+    when 'following'
+
+      return self.following_posts(current_user)
     end
   end
 
