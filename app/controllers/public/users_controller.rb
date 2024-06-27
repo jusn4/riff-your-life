@@ -11,6 +11,7 @@ class Public::UsersController < ApplicationController
   def index
     if params[:word].present?
       @users = User.where('name LIKE ?', "%#{params[:word]}%").page(params[:page])
+      @users = Kaminari.paginate_array(@users).page(params[:page])
     else
       @users = User.page(params[:page])
     end
