@@ -26,8 +26,16 @@
           </tr>
           <% if @user.email != "guest@example.com" %>
             <tr>
-              <th><%= link_to "編集", edit_user_path(@user), class:"btn btn-md btn-success" %></th>
-              <th><%= link_to "退会", user_path(@user), method: :delete, class:"btn btn-md btn-danger" %></th>
+              <th>
+                <%= link_to edit_user_path(@user) do %>
+                  <button type="button" class="btn btn-md btn-success"><i class="fa-solid fa-user-pen"></i>Edit</button>
+                <% end %>
+              </th>
+              <th>
+                <%= link_to user_path(@user), method: :delete do %>
+                  <button type="button" class="btn btn-md btn-danger"><i class="fa-solid fa-user-slash"></i>Delete</button>
+                <% end %>
+              </th>
             </tr>
           <% end %>
         </tbody>

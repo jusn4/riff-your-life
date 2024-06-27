@@ -3,14 +3,19 @@
     All talk rooms
   </div>
   <% @another_entries.each do |entry| %>
-    <div class="row col-6 mx-auto py-1">
-      <div class="col-8">
+    <div class="row col-8 py-1 border-bottom">
+      <div class="col-7 align-middle">
         <%= link_to room_path(entry.room) do %>
           <%= image_tag entry.user.get_image(50, 50) %>
           <strong><%= entry.user.name %></strong>
         <% end %>
       </div>
-      <div class="col-4 mx-auto align-middle">
+      <div class="col-2 align-middle">
+        <%= link_to room_path(entry.room) do %>
+          <button type="button" class="btn btn-success"><i class="fa-solid fa-comment-dots"></i>  Chat</button>
+        <% end %>
+      </div>
+      <div class="col-3 align-middle">
         <% if current_user.following?(entry.user) %>
           <%= link_to user_relationships_path(entry.user.id), method: :delete do %>
             <button type="button" class="btn btn-info"><i class="fa-solid fa-user-minus"></i> Unfollow</button>

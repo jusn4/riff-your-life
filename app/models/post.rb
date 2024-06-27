@@ -16,7 +16,6 @@ class Post < ApplicationRecord
   validates :music, presence: true, blob: { content_type: ['audio/mpeg', 'audio/x-wav', 'audio/flac'] }
   
   scope :latest, -> {order(created_at: :desc)}
-   scope :fav_count, -> {order(favorite: :desc)}
 
   def get_image(width,height)
     unless image.attached?
@@ -47,16 +46,6 @@ class Post < ApplicationRecord
     new_tags.each do |new_name|
       tag = Tag.find_or_create_by(name:new_name)
       self.tags << tag
-    end
-  end
-  
-
-  def self.sort(selection)
-    case selection
-    when 'latest'
-      return Post.all.order(created_at: :DESC)
-    when 'fav_count'
-      return Post.all.order(favorite: :DESC)
     end
   end
 
