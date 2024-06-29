@@ -35,7 +35,7 @@ class Post < ApplicationRecord
     #取得したタグから送られてきたタグを除いてoldtagとする
     old_tags = current_tags - tags
     #送信されてきたタグから現在存在するタグを除いたタグをnewとする
-    new_tags = tags - old_tags
+    new_tags = tags - current_tags
 
     #古いタグを消す
     old_tags.each do |old_name|
