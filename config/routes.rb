@@ -28,6 +28,7 @@ Rails.application.routes.draw do
     get '/mypage' => 'users#mypage'
     get '/following' => 'posts#following'
     get '/my_favorites' => 'posts#favorites'
+    get '/search' => 'searches#search'
     resources :users, only: [:index, :show, :edit, :update, :destroy] do
       get :search, on: :collection
       resource :relationships, only: [:create, :destroy]
@@ -48,6 +49,7 @@ Rails.application.routes.draw do
   end
 
   namespace :admin do
+    get '/search' => 'searches#search'
     resources :users, only: [:index, :show, :edit, :update, :destroy]
     resources :posts, only: [:index, :show, :edit, :update, :destroy] do
       get :tags, on: :collection
