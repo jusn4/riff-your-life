@@ -60,7 +60,7 @@
             </td>
             <td class="align-middle">
               <%= link_to user_path(post.user.id) do %>
-                <%= image_tag post.get_image(50, 50) %>
+                <%= image_tag post.user.get_image(50, 50) %>
                 <%= post.user.name %>
               <% end %>
             </td>
