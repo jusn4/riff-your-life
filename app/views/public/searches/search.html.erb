@@ -1,0 +1,113 @@
+<div class = "container">
+  <div class="h4 pb-2 mb-4 border-bottom border-secondary col-2">
+    Search for <%= @word %>
+  </div>
+  <div class = "h5 mb-4 col-2">
+    User
+  </div>
+  <% if @users.present? %>
+    <div class = "row">
+      <table class = "table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>introduction</th>
+            <th></th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @users.each do |user| %>
+          <tr>
+            <td class="align-middle">
+              <%= link_to user_path(user.id) do %>
+                <%= image_tag user.get_image(50, 50) %>
+                <%= user.name %>
+              <% end %>
+            </td>
+            <td class="align-middle">
+              <%= user.introduction %>
+            </td>
+            <td class="align-middle">
+              <%= user.posts.count %>posts
+            </td>
+            <td class="align-middle">
+              <% if current_user != user %>
+                <% if current_user.following?(user) %>
+                  <%= link_to user_relationships_path(user.id), method: :delete do %>
+                    <button type="button" class="btn btn-info"><i class="fa-solid fa-user-minus"></i> Unfollow</button>
+                  <% end %>
+                <% else %>
+                  <%= link_to user_relationships_path(user.id), method: :post do %>
+                    <button type="button" class="btn btn-primary"><i class="fa-solid fa-user-plus"></i> Follow</button>
+                  <% end %>
+                <% end %>
+              <% end %>
+            </td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  <% else %>
+    <div class="row">
+      <div class="h5 col-5 text-muted">
+        The user does not exist
+      </div>
+    </div>
+  <% end %>
+  <div class = "h5 mb-4 col-2">
+    Post
+  </div>
+  <% if @posts.present? %>
+    <div class = "row">
+      <table class = "table">
+        <thead>
+          <tr>
+            <th></th>
+            <th>Title</th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th>Creater</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @posts.each do |post| %>
+            <tr>
+              <td class="align-middle"><%= image_tag post.get_image(50, 50) %></td>
+              <td class="align-middle">
+                <%= link_to post_path(post.id) do %>
+                  <%= post.title %>
+                <% end %>
+              </td>
+              <td class="align-middle"><%= audio_tag url_for(post.music), controls: true %>
+              </td>
+              <td class="align-middle">
+                <div>
+                  <i class="fa-regular fa-comment"></i>
+                  <%= post.comments.count %>
+                </div>
+                <div class=<%= "favorite-" + post.id.to_s %>>
+                  <%= render 'public/favorites/heart', post: post %>
+                </div>
+              </td>
+              <td class="align-middle">
+                <%= link_to user_path(post.user.id) do %>
+                  <%= image_tag post.get_image(50, 50) %>
+                  <%= post.user.name %>
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  <% else %>
+    <div class="row">
+      <div class="h5 col-5 text-muted">
+        The post does not exist
+      </div>
+    </div>
+  <% end %>
+</div>
