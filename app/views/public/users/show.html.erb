@@ -28,19 +28,19 @@
             <% if current_user != @user %>
               <th class="align-middle">
                 <% if current_user.following?(@user) %>
-                  <%= link_to user_relationships_path(@user.id), method: :delete do %> 
-                    <button type="button" class="btn btn-info"><i class="fa-solid fa-user-minus"></i></button>
+                  <%= link_to user_relationships_path(@user.id), method: :delete do %>
+                    <button type="button" class="btn btn-info"><i class="fa-solid fa-user-minus"></i>  Unfollow</button>
                   <% end %>
                 <% else %>
                   <%= link_to user_relationships_path(@user.id), method: :post do %>
-                    <button type="button" class="btn btn-primary"><i class="fa-solid fa-user-plus"></i></button>
+                    <button type="button" class="btn btn-primary"><i class="fa-solid fa-user-plus"></i>  Follow</button>
                   <% end %>
                 <% end %>
               </th>
               <th class="align-middle">
                 <% if @is_room == true %>
                   <%= link_to room_path(@room_id) do %>
-                    <button type="button" class="btn btn-success"><i class="fa-solid fa-comment-dots"></i></button>
+                    <button type="button" class="btn btn-success"><i class="fa-solid fa-comment-dots"></i>  Chat</button>
                   <% end %>
                 <% else %>
                   <%= form_with model: @room do |f| %>
@@ -48,7 +48,7 @@
                       <%= e.hidden_field :user_id, value: @user.id %>
                     <% end %>
                     <button type="submit" class="btn btn-success">
-                      <i class="fa-solid fa-comment-medical"></i>
+                      <i class="fa-solid fa-comment-medical"></i>  Chat
                     </button>
                   <% end %>
                 <% end %>
@@ -66,14 +66,28 @@
             <th></th>
             <th>Title</th>
             <th></th>
+            <th></th>
           </tr>
         </thead>
         <tbody>
           <% @posts.each do |post| %>
           <tr>
             <td><%= image_tag post.get_image(50, 50) %></td>
-            <td><%= post.title %></td>
+            <td>
+              <%=link_to post_path(post.id) do %>
+                <%= post.title %>
+              <% end %>
+            </td>
             <td><%= audio_tag url_for(post.music), controls: true %>
+            </td>
+            <td class="align-middle">
+              <div>
+                <i class="fa-regular fa-comment"></i>
+                <%= post.comments.count %>
+              </div>
+              <div class=<%= "favorite-" + post.id.to_s %>>
+                <%= render 'public/favorites/heart', post: post %>
+              </div>
             </td>
           </tr>
           <% end %>

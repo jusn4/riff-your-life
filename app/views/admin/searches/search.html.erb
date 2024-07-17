@@ -1,23 +1,51 @@
-<div class = "container my-5">
+<div class = "container">
   <div class="h4 pb-2 mb-4 border-bottom border-secondary col-2">
-    All riffs
+    Search for <%=@keyword %>
   </div>
-  <div class="row">
-    <div class="d-flex form-group">
-      <form class ="form-inline">
-        <%= form_with url: admin_posts_path, local: true, method: :get do |f| %>
-          <%= f.text_field :word, placeholder:"Search by title", required: true, class: "form-control" %>
-          <button type="submit" class="btn btn-outline-success"><i class="fa-solid fa-magnifying-glass"></i></button>
-        <% end %>
-      </form>
-      <% if params[:word].present? %>
-        <div class="d-flex col-2">
-          <%= link_to "Clear", admin_posts_path, class: "btn btn-success" %>
-        </div>
-      <% end %>
+  <div class = "h5 mb-4 col-2">
+    User
+  </div>
+  <% if @users.present? %>
+    <div class = "row">
+      <table class = "table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @users.each do |user| %>
+          <tr>
+            <td>
+              <%= link_to admin_user_path(user.id) do %>
+                <%= image_tag user.get_image(50, 50) %>
+                <%= user.name %>
+              <% end %>
+            </td>
+            <td><%= user.email %></td>
+            <td>
+              <%= link_to "Edit", edit_admin_user_path(user), class: "btn btn-sm btn-success" %>
+              <%= link_to "Delete", admin_user_path(user), method: :delete, class: "btn btn-sm btn-danger" %>
+            </td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
     </div>
+  <% else %>
+  <div class="row">
+      <div class="h5 col-5 text-muted">
+        The user does not exist
+      </div>
+    </div>
+  <% end %>
+  <div class = "h5 mb-4 col-2">
+    Post
   </div>
-  <div class = "row">
+  <% if @posts.present? %>
+    <div class = "row">
       <table class = "table">
         <thead>
           <tr>
@@ -56,8 +84,12 @@
           <% end %>
         </tbody>
       </table>
-    <div class="mx-auto">
-      <%= paginate @posts %>
     </div>
-  </div>
+  <% else %>
+  <div class="row">
+      <div class="h5 col-5 text-muted">
+        The post does not exist
+      </div>
+    </div>
+  <% end %>
 </div>

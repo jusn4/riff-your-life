@@ -1,38 +1,13 @@
 <div class = "container my-5">
-  <div class="h4 pb-2 mb-4 border-bottom border-secondary col-2">
-    All riffs
-  </div>
-  <div class="row">
-    <div class="d-flex form-group col-5">
-      <form class ="form-inline">
-        <%= form_with url: posts_path, local: true, method: :get do |f| %>
-          <%= f.text_field :word, placeholder:"Search by title", required: true, class: "form-control" %>
-          <button type="submit" class="btn btn-outline-success"><i class="fa-solid fa-magnifying-glass"></i></button>
-        <% end %>
-      </form>
-      <% if params[:word].present? %>
-        <div class="d-flex col-2">
-          <%= link_to "Clear", posts_path, class: "btn btn-success" %>
-        </div>
-      <% end %>
-    </div>
-    <div class="col-7">
-      <h6>Sort:</h6>
-      <%= link_to posts_path(latest: "true") do %>
-        <button type="button" class="btn btn-outline-primary"><i class="fa-regular fa-clock"></i> Latest</button>
-      <% end %>
-      <%= link_to posts_path(fav_count: "true") do %>
-        <button type="button" class="btn btn-outline-danger"><i class="fa-regular fa-heart"></i> Favorites</button>
-      <% end %>
-    </div>
+  <div class="h4 pb-2 mb-4 border-bottom border-secondary col-3">
+    Your favorite riffs
   </div>
   <div class = "row">
-      <table class = "table">
+      <table class = "table col-9">
         <thead>
           <tr>
             <th></th>
             <th>Title</th>
-            <th></th>
             <th></th>
             <th></th>
             <th>Creater</th>

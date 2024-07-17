@@ -19,7 +19,7 @@
   </div>
     <%= form_with model: @message do |f| %>
       <div class="row rounded mx-auto col-10 border border-secondary">
-        <%= f.text_area :body, placeholder: "Add your message.", style: "border: none", class:"form-control col-11" %>
+        <%= f.text_area :body, placeholder: "Add your message.", style: "border: none", required: true, class:"form-control col-11" %>
         <%= f.hidden_field :room_id, value: @room.id %>
         <button type="submit" class="btn mx-auto"><i class="fa-regular fa-paper-plane"></i></button>
       </div>
