@@ -63,7 +63,7 @@
             <% end %>
           <% elsif admin_signed_in? %>
             <li class="nav-item form-inline">
-              <%= form_with url: search_path, local: true, method: :get do |f| %>
+              <%= form_with url: admin_search_path, local: true, method: :get do |f| %>
                 <%= f.text_field :keyword, placeholder:"Search by word", required: true, class: "form-control" %>
                 <button type="submit" class="btn btn-outline-secondary"><i class="fa-solid fa-magnifying-glass"></i></button>
               <% end %>

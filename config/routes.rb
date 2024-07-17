@@ -49,7 +49,7 @@ Rails.application.routes.draw do
   end
 
   namespace :admin do
-    get '/search' => 'seaches#search'
+    get '/search' => 'searches#search'
     resources :users, only: [:index, :show, :edit, :update, :destroy]
     resources :posts, only: [:index, :show, :edit, :update, :destroy] do
       get :tags, on: :collection
