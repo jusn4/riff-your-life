@@ -92,20 +92,35 @@
                 <button type="submit" class="btn btn-outline-secondary"><i class="fa-solid fa-magnifying-glass"></i></button>
               <% end %>
             </li>
-            <li class="nav-item">
-              <%= link_to "About", about_path, class:'nav-link text-dark' %>
+            <li class="nav-item text-center">
+              <%= link_to about_path, class:'nav-link text-dark' do %>
+                  <i class="fa-solid fa-circle-question"></i>
+                  <p class="d-flex h6 align-items-end">About</p>
+                <% end %>
             </li>
-            <li>
-              <%= link_to "Users", admin_users_path, class:'nav-link text-dark' %>
+            <li class="nav-item text-center">
+              <%= link_to admin_users_path, class:'nav-link text-dark' do %>
+                <i class="fa-solid fa-users"></i>
+                <p class="d-flex h6 align-items-end">Users</p>
+              <% end %>
             </li>
-            <li class="nav-item">
-              <%= link_to "Posts", admin_posts_path, class:'nav-link text-dark' %>
+            <li class="nav-item text-center">
+              <%= link_to admin_posts_path, class:'nav-link text-dark' do %>
+                <i class="fa-solid fa-headphones"></i>
+                <p class="d-flex h6 align-items-end">Posts</p>
+              <% end %>
             </li>
-            <li class="nav-item">
-              <%= link_to "Tags", admin_tags_path, class:'nav-link text-dark' %>
+            <li class="nav-item text-center">
+              <%= link_to admin_tags_path, class:'nav-link text-dark' do %>
+                <i class="fa-solid fa-tags"></i>
+                <p class="d-flex h6 align-items-end">Tags</p>
+              <% end %>
             </li>
-            <li class="nav-item">
-              <%= link_to "Sign Out", destroy_admin_session_path, method: :delete, class:'nav-link text-dark' %>
+            <li class="nav-item text-center">
+              <%= link_to destroy_admin_session_path, method: :delete, class:'nav-link text-dark' do %>
+                <i class="fa-solid fa-right-from-bracket"></i>
+                <p class="d-flex h6 align-items-end">Sign Out</p>
+              <% end %>
             </li>
           <% else %>
             <li class="nav-item">
