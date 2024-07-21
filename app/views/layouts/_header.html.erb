@@ -23,17 +23,23 @@
         <ul class="navbar-nav ml-auto">
           <% if user_signed_in? %>
             <% if current_user.email == "guest@example" %>
-              <li class="nav-item">
+              <li class="nav-item text-center ml-4">
                 <%= link_to about_path, class:'nav-link text-dark' do %>
                   <i class="fa-solid fa-circle-question"></i>
                   <p class="d-flex align-items-end">About</p>
                 <% end %>
               </li>
-              <li class="nav-item">
-                <%= link_to "Posts", posts_path, class:'nav-link text-dark' %>
+              <li class="nav-item text-center">
+                <%= link_to posts_path, class:'nav-link text-dark' do %>
+                  <i class="fa-solid fa-headphones"></i>
+                  <p class="d-flex h6 align-items-end">Posts</p>
+                <% end %>
               </li>
-              <li class="nav-item">
-                <%= link_to "Sign Out", destroy_user_session_path, method: :delete, class:'nav-link text-dark' %>
+              <li class="nav-item text-center">
+                <%= link_to destroy_user_session_path, method: :delete, class:'nav-link text-dark' do %>
+                  <i class="fa-solid fa-right-from-bracket"></i>
+                  <p class="d-flex h6 align-items-end">Sign Out</p>
+                <% end %>
               </li>
             <% else %>
               <li class="nav-item form-inline">
@@ -92,7 +98,7 @@
                 <button type="submit" class="btn btn-outline-secondary"><i class="fa-solid fa-magnifying-glass"></i></button>
               <% end %>
             </li>
-            <li class="nav-item text-center">
+            <li class="nav-item text-center ml-4">
               <%= link_to about_path, class:'nav-link text-dark' do %>
                   <i class="fa-solid fa-circle-question"></i>
                   <p class="d-flex h6 align-items-end">About</p>
