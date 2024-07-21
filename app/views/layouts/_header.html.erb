@@ -129,17 +129,29 @@
               <% end %>
             </li>
           <% else %>
-            <li class="nav-item">
-              <%= link_to "About", about_path, class:'nav-link text-dark' %>
+            <li class="nav-item text-center">
+              <%= link_to about_path, class:'nav-link text-dark' do %>
+                <i class="fa-solid fa-circle-question"></i>
+                <p class="d-flex h6 align-items-end">About</p>
+              <% end %>
             </li>
-            <li class="nav-item">
-              <%= link_to "Sign in", new_user_session_path, class:'nav-link text-dark' %>
+            <li class="nav-item text-center">
+              <%= link_to new_user_session_path, class:'nav-link text-dark' do %>
+                <i class="fa-solid fa-right-to-bracket"></i>
+                <p class="d-flex h6 align-items-end">Sign in</p>
+              <% end %>
             </li>
-            <li class="nav-item">
-              <%= link_to "Sign up", new_user_registration_path, class:'nav-link text-dark' %>
+            <li class="nav-item text-center">
+              <%= link_to new_user_registration_path, class:'nav-link text-dark' do %>
+                <i class="fa-solid fa-user-plus"></i>
+                <p class="d-flex h6 align-items-end">Sign up</p>
+              <% end %>
             </li>
-            <li class="nav-item">
-              <%= link_to "Guest in", users_guest_sign_in_path, method: :post, class:'nav-link text-dark' %>
+            <li class="nav-item text-center">
+              <%= link_to users_guest_sign_in_path, method: :post, class:'nav-link text-dark' do %>
+                <i class="fa-solid fa-user-lock"></i>
+                <p class="d-flex h6 align-items-end">Guest in</p>
+              <% end %>
             </li>
           <% end %>
         </ul>
