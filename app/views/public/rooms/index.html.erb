@@ -1,12 +1,12 @@
 <div class="container">
-  <div class="h4 pb-2 mb-4 border-bottom border-secondary col-2">
+  <div class="h4 pb-2 mb-4 border-bottom border-secondary col-3">
     All talk rooms
   </div>
   <% @another_entries.each do |entry| %>
     <div class="row col-8 py-1 border-bottom">
       <div class="col-7 align-middle">
         <%= link_to room_path(entry.room) do %>
-          <%= image_tag entry.user.get_image(50, 50) %>
+          <%= image_tag entry.user.get_image.variant( resize: "50x50^", gravity: "center", crop: "50x50+0+0" ) %>
           <strong><%= entry.user.name %></strong>
         <% end %>
       </div>

@@ -27,12 +27,12 @@ class User < ApplicationRecord
   validates :introduction, length: { maximum: 50 }
 
 
-  def get_image(width,height)
+  def get_image
     unless image.attached?
       file_path = Rails.root.join('app/assets/images/noImage.jpg')
       image.attach(io: File.open(file_path), filename: 'default-image.jpg', content_type: 'image/jpeg')
     end
-    image.variant(resize_to_limit: [width,height]).processed
+    image
   end
 
   # 指定したユーザーをフォローする
