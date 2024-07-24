@@ -1,7 +1,7 @@
 <div class = "container my-5">
   <div class = "row">
     <div class="col-3">
-      <%= image_tag @user.get_image(100, 100) %>
+      <%= image_tag @user.get_image.variant( resize: "100x100^", gravity: "center", crop: "100x100+0+0" ) %>
       <table class="table">
         <tbody>
           <tr>
@@ -67,7 +67,7 @@
         <tbody>
           <% @posts.each do |post| %>
           <tr>
-            <td class="align-middle"><%= image_tag post.get_image(50, 50) %></td>
+            <td class="align-middle"><%= image_tag post.get_image.variant( resize: "50x50^", gravity: "center", crop: "50x50+0+0" ) %></td>
             <td class="align-middle">
               <%= link_to post_path(post) do %>
                 <%= post.title %>

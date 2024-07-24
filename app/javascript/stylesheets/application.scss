@@ -1,4 +1,5 @@
 @use '~bootstrap/scss/bootstrap';
+@import url('https://fonts.googleapis.com/css2?family=Sawarabi+Mincho&display=swap');
 
 //carouselの背景の設定
 .filter {
@@ -10,4 +11,14 @@
 }
 .w-100 {
   width: 100%;
+}
+
+body {
+  font-family: "Sawarabi Mincho", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+a.nav-link:hover .fa-solid{
+  color:#003399;
 }

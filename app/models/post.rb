@@ -14,15 +14,15 @@ class Post < ApplicationRecord
 
   validates :title, presence: true
   validates :music, presence: true, blob: { content_type: ['audio/mpeg', 'audio/x-wav', 'audio/flac'] }
-  
+
   scope :latest, -> {order(created_at: :desc)}
 
-  def get_image(width,height)
+  def get_image
     unless image.attached?
       file_path = Rails.root.join('app/assets/images/noImage.jpg')
       image.attach(io: File.open(file_path), filename: 'default-image.jpg', content_type: 'image/jpeg')
     end
-    image.variant(resize_to_limit: [width, height]).processed
+    image
   end
 
   def favorited_by?(user)

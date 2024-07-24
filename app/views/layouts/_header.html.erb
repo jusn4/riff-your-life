@@ -23,14 +23,23 @@
         <ul class="navbar-nav ml-auto">
           <% if user_signed_in? %>
             <% if current_user.email == "guest@example" %>
-              <li class="nav-item">
-                <%= link_to "About", about_path, class:'nav-link text-dark' %>
+              <li class="nav-item text-center ml-4">
+                <%= link_to about_path, class:'nav-link text-dark' do %>
+                  <i class="fa-solid fa-circle-question"></i>
+                  <p class="d-flex align-items-end">About</p>
+                <% end %>
               </li>
-              <li class="nav-item">
-                <%= link_to "Posts", posts_path, class:'nav-link text-dark' %>
+              <li class="nav-item text-center">
+                <%= link_to posts_path, class:'nav-link text-dark' do %>
+                  <i class="fa-solid fa-headphones"></i>
+                  <p class="d-flex h6 align-items-end">Posts</p>
+                <% end %>
               </li>
-              <li class="nav-item">
-                <%= link_to "Sign Out", destroy_user_session_path, method: :delete, class:'nav-link text-dark' %>
+              <li class="nav-item text-center">
+                <%= link_to destroy_user_session_path, method: :delete, class:'nav-link text-dark' do %>
+                  <i class="fa-solid fa-right-from-bracket"></i>
+                  <p class="d-flex h6 align-items-end">Sign Out</p>
+                <% end %>
               </li>
             <% else %>
               <li class="nav-item form-inline">
@@ -39,26 +48,47 @@
                     <button type="submit" class="btn btn-outline-secondary"><i class="fa-solid fa-magnifying-glass"></i></button>
                   <% end %>
               </li>
-              <li class="nav-item">
-                <%= link_to "About", about_path, class:'nav-link text-dark' %>
+              <li class="nav-item text-center ml-4">
+                <%= link_to about_path, class:'nav-link text-dark' do %>
+                  <i class="fa-solid fa-circle-question"></i>
+                  <p class="d-flex h6 align-items-end">About</p>
+                <% end %>
               </li>
-              <li class="nav-item">
-                <%= link_to "My page", mypage_path, class:'nav-link text-dark' %>
+              <li class="nav-item text-center">
+                <%= link_to mypage_path, class:'nav-link text-dark' do %>
+                  <i class="fa-solid fa-house"></i>
+                  <p class="d-flex h6 align-items-end">My page</p>
+                <% end %>
               </li>
-              <li>
-                <%= link_to "Users", users_path, class:'nav-link text-dark' %>
+              <li class="nav-item text-center">
+                <%= link_to users_path, class:'nav-link text-dark' do %>
+                  <i class="fa-solid fa-users"></i>
+                  <p class="d-flex h6 align-items-end">Users</p>
+                <% end %>
               </li>
-              <li>
-                <%= link_to "Posts", posts_path, class:'nav-link text-dark' %>
+              <li class="nav-item text-center">
+                <%= link_to posts_path, class:'nav-link text-dark' do %>
+                  <i class="fa-solid fa-headphones"></i>
+                  <p class="d-flex h6 align-items-end">Posts</p>
+                <% end %>
               </li>
-              <li>
-                <%= link_to "Chats", rooms_path, class:'nav-link text-dark' %>
+              <li class="nav-item text-center">
+                <%= link_to rooms_path, class:'nav-link text-dark' do %>
+                  <i class="fa-solid fa-message"></i>
+                  <p class="d-flex h6 align-items-end">Chats</p>
+                <% end %>
               </li>
-              <li class="nav-item">
-                <%= link_to "Upload", new_post_path, class:'nav-link text-dark' %>
+              <li class="nav-item text-center">
+                <%= link_to new_post_path, class:'nav-link text-dark' do %>
+                  <i class="fa-solid fa-circle-chevron-up"></i>
+                  <p class="d-flex h6 align-items-end">Upload</p>
+                <% end %>
               </li>
-              <li class="nav-item">
-                <%= link_to "Sign Out", destroy_user_session_path, method: :delete, class:'nav-link text-dark' %>
+              <li class="nav-item text-center">
+                <%= link_to destroy_user_session_path, method: :delete, class:'nav-link text-dark' do %>
+                  <i class="fa-solid fa-right-from-bracket"></i>
+                  <p class="d-flex h6 align-items-end">Sign Out</p>
+                <% end %>
               </li>
             <% end %>
           <% elsif admin_signed_in? %>
@@ -68,33 +98,60 @@
                 <button type="submit" class="btn btn-outline-secondary"><i class="fa-solid fa-magnifying-glass"></i></button>
               <% end %>
             </li>
-            <li class="nav-item">
-              <%= link_to "About", about_path, class:'nav-link text-dark' %>
+            <li class="nav-item text-center ml-4">
+              <%= link_to about_path, class:'nav-link text-dark' do %>
+                  <i class="fa-solid fa-circle-question"></i>
+                  <p class="d-flex h6 align-items-end">About</p>
+                <% end %>
             </li>
-            <li>
-              <%= link_to "Users", admin_users_path, class:'nav-link text-dark' %>
+            <li class="nav-item text-center">
+              <%= link_to admin_users_path, class:'nav-link text-dark' do %>
+                <i class="fa-solid fa-users"></i>
+                <p class="d-flex h6 align-items-end">Users</p>
+              <% end %>
             </li>
-            <li class="nav-item">
-              <%= link_to "Posts", admin_posts_path, class:'nav-link text-dark' %>
+            <li class="nav-item text-center">
+              <%= link_to admin_posts_path, class:'nav-link text-dark' do %>
+                <i class="fa-solid fa-headphones"></i>
+                <p class="d-flex h6 align-items-end">Posts</p>
+              <% end %>
             </li>
-            <li class="nav-item">
-              <%= link_to "Tags", admin_tags_path, class:'nav-link text-dark' %>
+            <li class="nav-item text-center">
+              <%= link_to admin_tags_path, class:'nav-link text-dark' do %>
+                <i class="fa-solid fa-tags"></i>
+                <p class="d-flex h6 align-items-end">Tags</p>
+              <% end %>
             </li>
-            <li class="nav-item">
-              <%= link_to "Sign Out", destroy_admin_session_path, method: :delete, class:'nav-link text-dark' %>
+            <li class="nav-item text-center">
+              <%= link_to destroy_admin_session_path, method: :delete, class:'nav-link text-dark' do %>
+                <i class="fa-solid fa-right-from-bracket"></i>
+                <p class="d-flex h6 align-items-end">Sign Out</p>
+              <% end %>
             </li>
           <% else %>
-            <li class="nav-item">
-              <%= link_to "About", about_path, class:'nav-link text-dark' %>
+            <li class="nav-item text-center">
+              <%= link_to about_path, class:'nav-link text-dark' do %>
+                <i class="fa-solid fa-circle-question"></i>
+                <p class="d-flex h6 align-items-end">About</p>
+              <% end %>
             </li>
-            <li class="nav-item">
-              <%= link_to "Sign in", new_user_session_path, class:'nav-link text-dark' %>
+            <li class="nav-item text-center">
+              <%= link_to new_user_session_path, class:'nav-link text-dark' do %>
+                <i class="fa-solid fa-right-to-bracket"></i>
+                <p class="d-flex h6 align-items-end">Sign in</p>
+              <% end %>
             </li>
-            <li class="nav-item">
-              <%= link_to "Sign up", new_user_registration_path, class:'nav-link text-dark' %>
+            <li class="nav-item text-center">
+              <%= link_to new_user_registration_path, class:'nav-link text-dark' do %>
+                <i class="fa-solid fa-user-plus"></i>
+                <p class="d-flex h6 align-items-end">Sign up</p>
+              <% end %>
             </li>
-            <li class="nav-item">
-              <%= link_to "Guest in", users_guest_sign_in_path, method: :post, class:'nav-link text-dark' %>
+            <li class="nav-item text-center">
+              <%= link_to users_guest_sign_in_path, method: :post, class:'nav-link text-dark' do %>
+                <i class="fa-solid fa-user-lock"></i>
+                <p class="d-flex h6 align-items-end">Guest in</p>
+              <% end %>
             </li>
           <% end %>
         </ul>

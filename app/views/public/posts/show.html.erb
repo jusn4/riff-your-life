@@ -1,7 +1,7 @@
 <div class = "container my-5">
   <div class = "row">
     <div class="col-5">
-      <%= image_tag @post.get_image(400, 400) %>
+      <%= image_tag @post.get_image.variant( resize: "400x400^", gravity: "center", crop: "400x400+0+0" ) %>
 
     </div>
 
@@ -21,10 +21,10 @@
             <th><%= simple_format(h(@post.body)) %></th>
           </tr>
           <tr>
-            <th>Creater</th> 
+            <th>Creater</th>
             <th class="align-middle">
               <%= link_to user_path(@user.id) do %>
-                <%= image_tag @user.get_image(30, 30) %>
+                <%= image_tag @user.get_image.variant( resize: "30x30^", gravity: "center", crop: "30x30+0+0" ) %>
                 <%= @user.name %>
               <% end %>
               <% if current_user != @user %>
@@ -72,7 +72,7 @@
       <div class="row">
         <% @post.comments.each do |comment| %>
         <div class="col-1">
-          <%= image_tag comment.user.get_image(50,50) %>
+          <%= image_tag comment.user.get_image.variant( resize: "50x50^", gravity: "center", crop: "50x50+0+0" ) %>
         </div>
         <div class="col-11">
           <strong><%= comment.user.name %></strong>
