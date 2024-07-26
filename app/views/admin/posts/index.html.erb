@@ -23,6 +23,7 @@
           <tr>
             <th>Title</th>
             <th></th>
+            <th></th>
             <th>Creater</th>
             <th></th>
             <th></th>
@@ -38,6 +39,7 @@
             </td>
             <td class="align-middle"><%= audio_tag url_for(post.music), controls: true %>
             </td>
+            <td class="align-middle"><%= post.created_at.strftime('%Y/%m/%d') %></td>
             <td class="align-middle">
               <%= link_to admin_user_path(post.user.id) do %>
                 <%= image_tag post.user.get_image.variant( resize: "50x50^", gravity: "center", crop: "50x50+0+0" ) %>
