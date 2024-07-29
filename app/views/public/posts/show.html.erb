@@ -80,7 +80,7 @@
           <%= comment.body %>
           <% if current_user = comment.user %>
             <p class="text-right">
-               <%= link_to "delete", post_comment_path(comment.post, comment), method: :delete %>
+               <%= link_to "delete", post_comment_path(comment.post, comment), method: :delete,data: {confirm: "削除しますか？"} %>
             </p>
           <% end %>
         </div>
