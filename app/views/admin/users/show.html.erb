@@ -14,7 +14,7 @@
           </tr>
           <tr>
             <th><%= link_to "Edit", edit_admin_user_path(@user), class: "btn btn-sm btn-success" %></th>
-            <th><%= link_to "Delete", admin_user_path(@user), method: :delete, class: "btn btn-sm btn-danger" %></th>
+            <th><%= link_to "Delete", admin_user_path(@user), method: :delete, data: {confirm: "削除しますか？"}, class: "btn btn-sm btn-danger" %></th>
           </tr>
         </tbody>
       </table>
@@ -42,7 +42,7 @@
             </td>
             <td>
               <%= link_to "Edit", edit_admin_post_path(post.id), class: "btn btn-sm btn-success" %>
-              <%= link_to "Delete", admin_post_path(post.id), method: :delete, class: "btn btn-sm btn-danger" %>
+              <%= link_to "Delete", admin_post_path(post.id), method: :delete, data: {confirm: "削除しますか？"}, class: "btn btn-sm btn-danger" %>
             </td>
           </tr>
           <% end %>

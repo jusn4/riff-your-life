@@ -39,7 +39,7 @@
             <%= tag.posts.count %>
           </td>
           <td class="align-middle">
-            <%= link_to "Delete", admin_tag_path(tag), method: :delete, class: "btn btn-sm btn-danger" %>
+            <%= link_to "Delete", admin_tag_path(tag), method: :delete, data: {confirm: "削除しますか？"}, class: "btn btn-sm btn-danger" %>
           </td>
         </tr>
         <% end %>
