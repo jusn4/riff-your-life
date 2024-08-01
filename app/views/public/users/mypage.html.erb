@@ -34,7 +34,7 @@
                 <% end %>
               </th>
               <th>
-                <%= link_to user_path(@user), method: :delete do %>
+                <%= link_to user_path(@user), method: :delete,  data: {confirm: "削除しますか？"} do %>
                   <button type="button" class="btn btn-md btn-danger"><i class="fa-solid fa-user-slash"></i>Delete</button>
                 <% end %>
               </th>
