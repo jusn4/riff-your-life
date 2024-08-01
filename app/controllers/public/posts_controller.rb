@@ -53,11 +53,7 @@ class Public::PostsController < ApplicationController
     elsif params[:latest].present?
       @posts = Post.latest.page(params[:page])
     elsif  params[:fav_count].present?
-      @posts = Post.all.sort {|a,b|
-        b.favorites.size <=>
-        a.favorites.size
-      }
-      @posts = Kaminari.paginate_array(@posts).page(params[:page])
+      @posts = Post.left_joins(:favorites).group(:id).order("count(favorites.post_id) DESC").page(params[:page])
     else
       @posts = Post.page(params[:page])
     end
